@@ -4,7 +4,6 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import reactCompiler from 'eslint-plugin-react-compiler';
-import clsx from 'eslint-plugin-clsx';
 
 export default [
   { ignores: ['dist'] },
@@ -25,7 +24,6 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'react-compiler': reactCompiler,
-      clsx: clsx,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -38,7 +36,6 @@ export default [
         { allowConstantExport: true },
       ],
       'react-compiler/react-compiler': 'error',
-      ...clsx.configs.recommended.rules,
     },
   },
 ];
