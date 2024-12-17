@@ -4,9 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ReactCompilerConfig = {
-  /* ... */
-};
 // https://vite.dev/config/
 
 export default defineConfig(() => {
@@ -16,12 +13,6 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    plugins: [
-      react({
-        babel: {
-          plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
-        },
-      }),
-    ],
+    plugins: [react()],
   };
 });
