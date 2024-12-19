@@ -9,6 +9,7 @@ export const listPhongSelector = (state) => state.phong.listPhong;
 export const isLoadingPhongSelector = (state) => state.phong.isLoading;
 export const isErrorPhongSelector = (state) => state.phong.isError;
 //vitri slice
+export const listViTriSelector = (state) => state.viTri.listViTri;
 export const isLoadingViTriSelector = (state) => state.viTri.isLoading;
 export const isErrorViTriSelector = (state) => state.viTri.isError;
 export const filteredPhongSelector = createSelector([listPhongSelector, tienNghiSelector, roomAndBedSelector, giaPhongSelector], (listPhong, tienNghi, romAndBed, giaPhong) => {

@@ -3,7 +3,7 @@ import React from "react";
 const CardComponent = ({phong}) => {
   return (
     <div className="flex flex-col gap-[5px] relative cursor-pointer">
-      <img src={phong.hinhAnh} alt="" className="w-full h-64 md:h-80 lg:h-72 rounded-lg object-cover" />
+      <img src={phong.hinhAnh} alt="" className="w-full h-64 md:h-80 lg:h-72 rounded-lg object-cover mb-3" />
       <div className="flex justify-between items-center">
         <h2 className="font-semibold truncate w-3/4">{phong.tenPhong}</h2>
         <div className="flex w-12 gap-1 items-center">

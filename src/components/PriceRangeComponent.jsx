@@ -22,7 +22,7 @@ const PriceRangeComponent = ({ giaPhong, setGiaPhong }) => {
         {/* Input giá từ */}
         <input
           type="text"
-          value={giaPhong.tu || ""} // Hiển thị giá trị "từ"
+          value={(giaPhong.tu) || ""}
           placeholder="₫ TỪ"
           onChange={handleChangeTu}
           className="w-full h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
