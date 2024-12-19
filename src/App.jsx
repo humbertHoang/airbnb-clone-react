@@ -5,6 +5,7 @@ import { fetchListPhong } from './redux/slice/phongSlice';
 import FilterComponent from './components/FilterComponent';
 import ListRoomComponent from './components/ListRoomComponent';
 import { ToastContainer } from "react-toastify";
+import FooterComponent from "./components/FooterComponent";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,9 +19,10 @@ const App = () => {
   if (isError) return <p>Đã xảy ra lỗi khi tải dữ liệu!</p>;
 
   return (
-    <div className="container mx-auto">
+    <div>
       <FilterComponent />
       <ListRoomComponent />
+      <FooterComponent/>
       <ToastContainer />
     </div>
   );
