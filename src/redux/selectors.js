@@ -6,9 +6,11 @@ export const roomAndBedSelector = (state) => state.filter.romAndBed;
 export const giaPhongSelector = (state) => state.filter.giaPhong;
 //phong slice
 export const listPhongSelector = (state) => state.phong.listPhong;
-export const isLoadingSelector = (state) => state.phong.isLoading;
-export const isErrorSelector = (state) => state.phong.isError;
-
+export const isLoadingPhongSelector = (state) => state.phong.isLoading;
+export const isErrorPhongSelector = (state) => state.phong.isError;
+//vitri slice
+export const isLoadingViTriSelector = (state) => state.viTri.isLoading;
+export const isErrorViTriSelector = (state) => state.viTri.isError;
 export const filteredPhongSelector = createSelector([listPhongSelector, tienNghiSelector, roomAndBedSelector, giaPhongSelector], (listPhong, tienNghi, romAndBed, giaPhong) => {
   return listPhong.filter((room) => {
     // Kiểm tra giá phòng
