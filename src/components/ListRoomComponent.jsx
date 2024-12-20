@@ -8,9 +8,9 @@ const ListRoomComponent = () => {
   const listPhong = useSelector(filteredPhongSelector);
 
   return (
-    <div className="container mx-auto px-2 md:px-4 lg:px-0">
+    <div className="container mx-auto px-2 py-3 md:px-4 lg:px-0">
       {/* Tiêu đề */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex md:flex-row flex-col md:items-center justify-between">
         <h2 className="text-start text-2xl font-bold">
           Danh Sách Phòng Cho Thuê{' '}
         </h2>

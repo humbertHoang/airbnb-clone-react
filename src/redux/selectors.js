@@ -1,9 +1,11 @@
 import { createSelector } from "reselect";
+import unorm from "unorm";
 
 //filter slice
 export const tienNghiSelector = (state) => state.filter.tienNghi;
 export const roomAndBedSelector = (state) => state.filter.romAndBed;
 export const giaPhongSelector = (state) => state.filter.giaPhong;
+export const searchBarSelector = (state) => state.filter.searchBar;
 //phong slice
 export const listPhongSelector = (state) => state.phong.listPhong;
 export const isLoadingPhongSelector = (state) => state.phong.isLoading;
@@ -12,8 +14,12 @@ export const isErrorPhongSelector = (state) => state.phong.isError;
 export const listViTriSelector = (state) => state.viTri.listViTri;
 export const isLoadingViTriSelector = (state) => state.viTri.isLoading;
 export const isErrorViTriSelector = (state) => state.viTri.isError;
-export const filteredPhongSelector = createSelector([listPhongSelector, tienNghiSelector, roomAndBedSelector, giaPhongSelector], (listPhong, tienNghi, romAndBed, giaPhong) => {
+export const filteredPhongSelector = createSelector([listPhongSelector, tienNghiSelector, roomAndBedSelector, giaPhongSelector, searchBarSelector], (listPhong, tienNghi, romAndBed, giaPhong, searchBar) => {
   return listPhong.filter((room) => {
+    //kiểm tra tên phong
+    const isNameMatch = unorm.nfd(room.tenPhong).replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(unorm.nfd(searchBar).replace(/[\u0300-\u036f]/g, "").toLowerCase());
+
+
     // Kiểm tra giá phòng
     const isGiaPhongMatch = (() => {
       if (giaPhong.tu !== undefined && giaPhong.tu !== "" && giaPhong.den !== undefined && giaPhong.den !== "") {
@@ -43,6 +49,6 @@ export const filteredPhongSelector = createSelector([listPhongSelector, tienNghi
     });
 
     // Trả về true nếu thỏa mãn tất cả các điều kiện
-    return isGiaPhongMatch && isTienNghiMatch && isRoomAndBedMatch;
+    return isGiaPhongMatch && isTienNghiMatch && isRoomAndBedMatch && isNameMatch;
   });
 });

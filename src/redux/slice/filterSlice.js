@@ -7,6 +7,7 @@ const initialState = {
     tu: undefined,
     den: undefined,
   },
+  searchBar: "",
 };
 
 const filterSlice = createSlice({
@@ -24,9 +25,12 @@ const filterSlice = createSlice({
     },
     changeGiaPhong: (state, action) => {
       state.giaPhong = action.payload;
+    },
+    changeSearchBar: (state, action) => {
+      state.searchBar = action.payload;
     }
   },
 });
 
-export const { changeTienNghi, resetFilter ,changRoomAndBed,changeGiaPhong } = filterSlice.actions;
+export const { changeTienNghi, resetFilter ,changRoomAndBed,changeGiaPhong,changeSearchBar } = filterSlice.actions;
 export default filterSlice.reducer;
