@@ -11,7 +11,7 @@ import ListRoomComponent from './../components/ListRoomComponent';
 import { fetchListViTri } from './../redux/slice/viTriSlice';
 import { fetchListPhong } from './../redux/slice/phongSlice';
 import BannerComponent from '../components/BannerComponent';
-import LoginComponent from '../components/LoginComponent';
+import { changeToken, changeUser } from '../redux/slice/userSlice';
 
 
 const HomePage = () => {
@@ -20,11 +20,16 @@ const HomePage = () => {
   const isErrorPhong = useSelector(isErrorPhongSelector);
   const isLoadingViTri = useSelector(isLoadingViTriSelector);
   const isErrorViTri = useSelector(isErrorViTriSelector);
-  const [isOpenLogin, setIsOpenLogin] = useState(true);
 
   // Initialize $dom with useRef
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = localStorage.getItem('token');
+    if(user && token) {
+      dispatch(changeUser(user))
+      dispatch(changeToken(token))
+    };
     dispatch(fetchListPhong());
     dispatch(fetchListViTri());
   }, [dispatch]);

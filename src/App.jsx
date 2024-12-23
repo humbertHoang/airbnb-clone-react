@@ -25,7 +25,7 @@ const App = () => {
           
         </Route>
       </Routes>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={1000} />
     </BrowserRouter>
   );
 };
