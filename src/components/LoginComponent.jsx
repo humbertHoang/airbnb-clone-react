@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+const navigate = useNavigate()
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -22,17 +24,34 @@ const LoginComponent = () => {
           'Địa chỉ email phải đúng định dạng'
         )
         .required('Vui lòng nhập email của bạn.'),
-      password: Yup.string()
-        .required('Vui lòng nhập mật khẩu của bạn.'),
+      password: Yup.string().required('Vui lòng nhập mật khẩu của bạn.'),
     }),
-    onSubmit: values => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const response = await axios({
+          method: 'POST',
+          url: `${import.meta.env.VITE_API_URL}/api/auth/signin`,
+          headers: {
+            tokenCybersoft: import.meta.env.VITE_TOKEN_CYBERSOFT,
+          },
+          data: {
+            email: values.email,
+            password: values.password,
+          },
+        });
+        localStorage.setItem('token', response.data.content.token);
+        localStorage.setItem('user', JSON.stringify(response.data.content.user));
+        toast.success('Đăng nhập thành công');
+        navigate('/');
+      } catch (error) {
+        toast.error(error.response.data.content);
+      }
     },
   });
 
   return (
     <div className="px-2 md:px-4 lg:px-0">
-      <div className="mx-auto my-10 w-full max-w-md rounded-lg bg-white p-6 shadow-lg sm:max-w-lg lg:max-w-xl border">
+      <div className="mx-auto my-10 w-full max-w-md rounded-lg border bg-white p-6 shadow-lg sm:max-w-lg lg:max-w-xl">
         <div className="mb-6 text-center">
           <img
             src="https://cdn-icons-png.flaticon.com/512/2111/2111320.png"
@@ -67,35 +86,37 @@ const LoginComponent = () => {
 
           {/* Password Input */}
           <div>
-  <label htmlFor="password" className="mb-2 block font-medium text-gray-700">
-    Mật khẩu
-  </label>
-  <div className="relative flex items-center border border-gray-300 rounded-md">
-    <input
-      type={showPassword ? 'text' : 'password'}
-      id="password"
-      placeholder="Nhập mật khẩu của bạn"
-      className="w-full rounded-md px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.password}
-    />
-    <span
-      className="absolute right-3 text-gray-500 cursor-pointer"
-      onClick={togglePasswordVisibility}
-    >
-      <i
-        className={`fas ${
-          showPassword ? 'fa-eye-slash' : 'fa-eye'
-        }`}
-      ></i>
-    </span>
-  </div>
-  {formik.touched.password && formik.errors.password && (
-    <div className="text-red-500 mt-1 text-sm">{formik.errors.password}</div>
-  )}
-</div>
-
+            <label
+              htmlFor="password"
+              className="mb-2 block font-medium text-gray-700"
+            >
+              Mật khẩu
+            </label>
+            <div className="relative flex items-center rounded-md border border-gray-300">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="Nhập mật khẩu của bạn"
+                className="w-full rounded-md px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              <span
+                className="absolute right-3 cursor-pointer text-gray-500"
+                onClick={togglePasswordVisibility}
+              >
+                <i
+                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                ></i>
+              </span>
+            </div>
+            {formik.touched.password && formik.errors.password && (
+              <div className="mt-1 text-sm text-red-500">
+                {formik.errors.password}
+              </div>
+            )}
+          </div>
 
           {/* Submit Button */}
           <button

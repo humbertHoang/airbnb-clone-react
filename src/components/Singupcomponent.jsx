@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +7,11 @@ import { toast } from 'react-toastify';
 
 const SignUpComponent = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
   // Cấu hình Formik
   const formik = useFormik({
     initialValues: {
@@ -15,7 +20,7 @@ const SignUpComponent = () => {
       password: '',
       phone: '',
       birthday: '',
-      gender: '',
+      gender: 'true',
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -43,14 +48,14 @@ const SignUpComponent = () => {
       phone: Yup.string()
         .required('Vui lòng nhập số điện thoại của bạn.')
         .matches(/^[0-9]{10}$/, 'Số điện thoại phải có 10 chữ số.'), // Kiểm tra số điện thoại 10 chữ số
-        birthday: Yup.date()
+      birthday: Yup.date()
         .required('Vui lòng nhập ngày sinh của bạn.')
-        .max(new Date(), 'ngày sinh không hợp lệ '),      
+        .max(new Date(), 'ngày sinh không hợp lệ '),
       gender: Yup.string().required('Vui lòng chọn giới tính.'),
     }),
     onSubmit: async (values) => {
       try {
-        const res = await axios({
+        await axios({
           method: 'POST',
           url: `${import.meta.env.VITE_API_URL}/api/auth/signup`,
           headers: {
@@ -142,21 +147,30 @@ const SignUpComponent = () => {
             >
               Mật khẩu
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Nhập mật khẩu của bạn"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div className="text-sm text-red-500">
+            <div className="relative flex items-center rounded-md border border-gray-300">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="Nhập mật khẩu của bạn"
+                className="w-full rounded-md px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              <span
+                className="absolute right-3 cursor-pointer text-gray-500"
+                onClick={togglePasswordVisibility}
+              >
+                <i
+                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                ></i>
+              </span>
+            </div>
+            {formik.touched.password && formik.errors.password && (
+              <div className="mt-1 text-sm text-red-500">
                 {formik.errors.password}
               </div>
-            ) : null}
+            )}
           </div>
 
           {/* Phone Input */}
