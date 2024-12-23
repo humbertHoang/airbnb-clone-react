@@ -138,7 +138,7 @@ const FilterComponent = () => {
         <p className="text-sm font-medium">Lọc</p>
       </div>
       <div
-        className={`${isOpen ? 'fixed' : 'hidden'} left-0 top-0 z-10 h-full w-full bg-black/30 p-10 transition-all duration-300 ease-in-out`}
+        className={`${isOpen ? 'fixed' : 'hidden'} left-0 top-0 z-50 h-full w-full bg-black/30 p-10 transition-all duration-300 ease-in-out`}
       >
         <div className="flex h-full w-full items-center justify-center">
           <div className="w-full overflow-hidden rounded-md bg-white shadow-lg md:w-[568px]">

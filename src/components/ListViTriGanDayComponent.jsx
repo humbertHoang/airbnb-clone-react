@@ -24,25 +24,24 @@ const ListViTriGanDayComponent = () => {
         <h2 className="text-start text-2xl font-bold">
           Khám phá những điểm đến
         </h2>
-        <div className="hidden md:flex md:gap-4">
+        <div className="hidden lg:flex md:gap-4">
           <div
             onClick={() => scrollLeft()}
-            class="cursor-pointer rounded-full border border-gray-300 bg-white px-3 py-1 shadow-sm transition-colors duration-300 hover:border-gray-400 hover:bg-gray-100"
+            className="cursor-pointer rounded-full border border-gray-300 bg-white px-3 py-1 shadow-sm transition-colors duration-300 hover:border-gray-400 hover:bg-gray-100"
           >
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
           </div>
           <div
             onClick={() => scrollRight()}
-            class="cursor-pointer rounded-full border border-gray-300 bg-white px-3 py-1 shadow-sm transition-colors duration-300 hover:border-gray-400 hover:bg-gray-100"
+            className="cursor-pointer rounded-full border border-gray-300 bg-white px-3 py-1 shadow-sm transition-colors duration-300 hover:border-gray-400 hover:bg-gray-100"
           >
-            <i class="fa-solid fa-arrow-right"></i>
+            <i className="fa-solid fa-arrow-right"></i>
           </div>
         </div>
       </div>
-      <div className="relative">
         <div
           ref={scrollContainerRef}
-          className="mt-2 flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap md:overflow-x-hidden"
+          className="mt-2 flex flex-nowrap gap-2 overflow-x-auto whitespace-nowrap lg:overflow-x-hidden"
         >
           {listViTri.map((vitri) => (
             <div
@@ -66,7 +65,6 @@ const ListViTriGanDayComponent = () => {
           ))}
         </div>
       </div>
-    </div>
   );
 };
 

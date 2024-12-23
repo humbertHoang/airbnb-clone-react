@@ -4,6 +4,8 @@ import ClientTemplate from "./pages/templates/ClientTemplate";
 import { ToastContainer } from "react-toastify";
 import Page404 from "./pages/Page404";
 import DetailRoomPage from "./pages/DetailRoomPage";
+import LoginComponent from "./components/LoginComponent";
+import SignUpComponent from "./components/Singupcomponent";
 
 
 
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/" element={<ClientTemplate />}>
           <Route path="" element={<HomePage />} />
           <Route path="room/:id" element={<DetailRoomPage />} />
+          <Route path="login" element={<LoginComponent />} />
+          <Route path="register" element={<SignUpComponent />} />
           <Route path="*" element={<Page404 />} />
           
         </Route>

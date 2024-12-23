@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   isErrorPhongSelector,
@@ -11,6 +11,8 @@ import ListRoomComponent from './../components/ListRoomComponent';
 import { fetchListViTri } from './../redux/slice/viTriSlice';
 import { fetchListPhong } from './../redux/slice/phongSlice';
 import BannerComponent from '../components/BannerComponent';
+import LoginComponent from '../components/LoginComponent';
+
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const HomePage = () => {
   const isErrorPhong = useSelector(isErrorPhongSelector);
   const isLoadingViTri = useSelector(isLoadingViTriSelector);
   const isErrorViTri = useSelector(isErrorViTriSelector);
+  const [isOpenLogin, setIsOpenLogin] = useState(true);
 
   // Initialize $dom with useRef
 
@@ -56,6 +59,7 @@ const HomePage = () => {
       <BannerComponent />
       <ListViTriGanDayComponent />
       <ListRoomComponent />
+
     </div>
   );
 };
