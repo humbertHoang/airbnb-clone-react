@@ -1,39 +1,49 @@
+import { ConfigProvider } from 'antd';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 import LoginComponent from './components/LoginComponent';
 import SignUpComponent from './components/Singupcomponent';
+import BookingsPage from './pages/admin/BookingsPage';
 import DashboardPage from './pages/admin/DashboardPage';
+import LocationsPage from './pages/admin/LocationsPage';
+import RoomsPage from './pages/admin/RoomsPage';
+import UsersPage from './pages/admin/UsersPage';
 import DetailRoomPage from './pages/DetailRoomPage';
 import HomePage from './pages/HomePage';
 import Page404 from './pages/Page404';
 import AdminTemplate from './pages/templates/AdminTemplate';
 import ClientTemplate from './pages/templates/ClientTemplate';
+import { theme } from './theme/antd.config';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Client Routes */}
-        <Route path="/" element={<ClientTemplate />}>
-          <Route path="" element={<HomePage />} />
-          <Route path="room/:id" element={<DetailRoomPage />} />
-          <Route path="login" element={<LoginComponent />} />
-          <Route path="register" element={<SignUpComponent />} />
-        </Route>
+    <ConfigProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          {/* Client Routes */}
+          <Route path="/" element={<ClientTemplate />}>
+            <Route path="" element={<HomePage />} />
+            <Route path="room/:id" element={<DetailRoomPage />} />
+            <Route path="login" element={<LoginComponent />} />
+            <Route path="register" element={<SignUpComponent />} />
+          </Route>
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminTemplate />}>
-          <Route path="" element={<DashboardPage />} />
-          <Route path="rooms" element={<div>Rooms Management</div>} />
-          <Route path="users" element={<div>Users Management</div>} />
-          <Route path="bookings" element={<div>Bookings Management</div>} />
-        </Route>
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminTemplate />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="rooms" element={<RoomsPage />} />
+            <Route path="users" element={<UsersPage />} />
+            <Route path="bookings" element={<BookingsPage />} />
+            <Route path="locations" element={<LocationsPage />} />
+          </Route>
 
-        {/* 404 Route */}
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-      <ToastContainer autoClose={1000} />
-    </BrowserRouter>
+          {/* 404 Route */}
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+        <ToastContainer autoClose={1000} />
+      </BrowserRouter>
+    </ConfigProvider>
   );
 };
 
