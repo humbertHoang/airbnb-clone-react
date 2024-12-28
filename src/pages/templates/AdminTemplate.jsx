@@ -7,11 +7,20 @@ import AdminSider from "../../components/admin/AdminSider";
 const AdminTemplate = () => {
   const { Content } = Layout;
   const [collapsed, setCollapsed] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
   return (
     <Layout>
-      <AdminSider collapsed={collapsed} setCollapsed={setCollapsed} />
+      <AdminSider
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        drawerVisible={drawerVisible}
+        setDrawerVisible={setDrawerVisible}
+      />
       <Layout>
-        <AdminHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+        <AdminHeader
+          drawerVisible={drawerVisible}
+          setDrawerVisible={setDrawerVisible}
+        />
         <Content className="m-4 min-h-[calc(100vh-96px)]">
           <Outlet />
         </Content>

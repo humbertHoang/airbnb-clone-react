@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-import fluid, { extract, screens, fontSize } from 'fluid-tailwind';
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 export default {
-  content: { files: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'], extract },
+  content: {
+    files: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    extract,
+  },
   theme: {
     fontFamily: {
       sans: ['"Inter", sans-serif'],
@@ -10,7 +13,7 @@ export default {
     fontSize,
     extend: {
       colors: {
-        primary: '#FF385C',
+        primary: "#FF385C",
       },
     },
   },

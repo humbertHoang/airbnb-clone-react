@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       email: Yup.string()
         .matches(
           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          'Địa chỉ email phải đúng định dạng'
+          "Địa chỉ email phải đúng định dạng",
         )
-        .required('Vui lòng nhập email của bạn.'),
-      password: Yup.string().required('Vui lòng nhập mật khẩu của bạn.'),
+        .required("Vui lòng nhập email của bạn."),
+      password: Yup.string().required("Vui lòng nhập mật khẩu của bạn."),
     }),
     onSubmit: async (values) => {
       try {
         const response = await axios({
-          method: 'POST',
+          method: "POST",
           url: `${import.meta.env.VITE_API_URL}/api/auth/signin`,
           headers: {
             tokenCybersoft: import.meta.env.VITE_TOKEN_CYBERSOFT,
@@ -39,10 +39,13 @@ const navigate = useNavigate()
             password: values.password,
           },
         });
-        localStorage.setItem('token', response.data.content.token);
-        localStorage.setItem('user', JSON.stringify(response.data.content.user));
-        toast.success('Đăng nhập thành công');
-        navigate('/');
+        localStorage.setItem("token", response.data.content.token);
+        localStorage.setItem(
+          "user",
+          JSON.stringify(response.data.content.user),
+        );
+        toast.success("Đăng nhập thành công");
+        navigate("/");
       } catch (error) {
         toast.error(error.response.data.content);
       }
@@ -94,7 +97,7 @@ const navigate = useNavigate()
             </label>
             <div className="relative flex items-center rounded-md border border-gray-300">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Nhập mật khẩu của bạn"
                 className="w-full rounded-md px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
@@ -107,7 +110,7 @@ const navigate = useNavigate()
                 onClick={togglePasswordVisibility}
               >
                 <i
-                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                  className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
                 ></i>
               </span>
             </div>
@@ -128,8 +131,8 @@ const navigate = useNavigate()
         </form>
         {/* Register Link */}
         <p className="mt-6 text-center text-gray-500">
-          Không có tài khoản?{' '}
-          <NavLink to={'/register'} className="text-blue-500 hover:underline">
+          Không có tài khoản?{" "}
+          <NavLink to={"/register"} className="text-blue-500 hover:underline">
             Đăng ký tại đây
           </NavLink>
         </p>

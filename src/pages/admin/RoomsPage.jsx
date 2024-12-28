@@ -1,58 +1,58 @@
-import { Table, Button, Space, Input, Tag } from 'antd';
-import { useState } from 'react';
 import {
-  SearchOutlined,
-  EditOutlined,
   DeleteOutlined,
+  EditOutlined,
   PictureOutlined,
-} from '@ant-design/icons';
+  SearchOutlined,
+} from "@ant-design/icons";
+import { Button, Input, Space, Table, Tag } from "antd";
+import { useState } from "react";
 
 const RoomsPage = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
       sorter: (a, b) => a.id - b.id,
     },
     {
-      title: 'Tên phòng',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Tên phòng",
+      dataIndex: "name",
+      key: "name",
       sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
-      title: 'Địa điểm',
-      dataIndex: 'location',
-      key: 'location',
+      title: "Địa điểm",
+      dataIndex: "location",
+      key: "location",
     },
     {
-      title: 'Giá',
-      dataIndex: 'price',
-      key: 'price',
+      title: "Giá",
+      dataIndex: "price",
+      key: "price",
       sorter: (a, b) => a.price - b.price,
       render: (price) => `$${price}`,
     },
     {
-      title: 'Trạng thái',
-      dataIndex: 'status',
-      key: 'status',
+      title: "Trạng thái",
+      dataIndex: "status",
+      key: "status",
       filters: [
-        { text: 'Còn trống', value: 'available' },
-        { text: 'Đã đặt', value: 'booked' },
+        { text: "Còn trống", value: "available" },
+        { text: "Đã đặt", value: "booked" },
       ],
       onFilter: (value, record) => record.status === value,
       render: (status) => (
-        <Tag color={status === 'available' ? 'green' : 'red'}>
+        <Tag color={status === "available" ? "green" : "red"}>
           {status.toUpperCase()}
         </Tag>
       ),
     },
     {
-      title: 'Hành động',
-      key: 'actions',
+      title: "Hành động",
+      key: "actions",
       render: (_, record) => (
         <Space>
           <Button
@@ -81,15 +81,15 @@ const RoomsPage = () => {
   ];
 
   const handleManageImages = (record) => {
-    console.log('Manage images for room:', record);
+    console.log("Manage images for room:", record);
   };
 
   const handleEdit = (record) => {
-    console.log('Edit room:', record);
+    console.log("Edit room:", record);
   };
 
   const handleDelete = (record) => {
-    console.log('Delete room:', record);
+    console.log("Delete room:", record);
   };
 
   return (
@@ -108,7 +108,7 @@ const RoomsPage = () => {
       </div>
       <Table
         columns={columns}
-        // Replace with actual data from your API
+        //TODO: Replace with actual data from your API
         dataSource={[]}
         rowKey="id"
       />

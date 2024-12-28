@@ -1,26 +1,26 @@
 import {
   DeleteOutlined,
   EditOutlined,
-  GlobalOutlined,
+  PlusOutlined,
   SearchOutlined,
-} from '@ant-design/icons';
-import { Button, Image, Input, Space, Table } from 'antd';
-import { useState } from 'react';
+} from "@ant-design/icons";
+import { Button, Image, Input, Space, Table } from "antd";
+import { useState } from "react";
 
 const LocationsPage = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
       sorter: (a, b) => a.id - b.id,
     },
     {
-      title: 'Hình ảnh',
-      dataIndex: 'image',
-      key: 'image',
+      title: "Hình ảnh",
+      dataIndex: "image",
+      key: "image",
       render: (image) => (
         <Image
           src={image}
@@ -33,24 +33,24 @@ const LocationsPage = () => {
       ),
     },
     {
-      title: 'Tên địa điểm',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Tên địa điểm",
+      dataIndex: "name",
+      key: "name",
       sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
-      title: 'Tỉnh/Thành phố',
-      dataIndex: 'province',
-      key: 'province',
+      title: "Tỉnh/Thành phố",
+      dataIndex: "province",
+      key: "province",
     },
     {
-      title: 'Quốc gia',
-      dataIndex: 'country',
-      key: 'country',
+      title: "Quốc gia",
+      dataIndex: "country",
+      key: "country",
     },
     {
-      title: 'Hành động',
-      key: 'actions',
+      title: "Hành động",
+      key: "actions",
       render: (_, record) => (
         <Space>
           <Button
@@ -73,15 +73,15 @@ const LocationsPage = () => {
   ];
 
   const handleManageImage = (record) => {
-    console.log('Manage image for location:', record);
+    console.log("Manage image for location:", record);
   };
 
   const handleEdit = (record) => {
-    console.log('Edit location:', record);
+    console.log("Edit location:", record);
   };
 
   const handleDelete = (record) => {
-    console.log('Delete location:', record);
+    console.log("Delete location:", record);
   };
 
   return (
@@ -95,12 +95,14 @@ const LocationsPage = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <Button type="primary">Thêm địa điểm</Button>
+          <Button icon={<PlusOutlined />} type="primary">
+            Thêm địa điểm
+          </Button>
         </Space>
       </div>
       <Table
         columns={columns}
-        // Replace with actual data from your API
+        // TODO: Replace with actual data from your API
         dataSource={[]}
         rowKey="id"
       />

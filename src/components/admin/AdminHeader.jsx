@@ -1,14 +1,16 @@
 import {
   LogoutOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Badge } from "antd";
-import { Avatar, Button, Dropdown, Layout } from "antd";
+import { Avatar, Badge, Button, Dropdown, Layout } from "antd";
+import Logo from "../common/LogoFull";
 
 const { Header } = Layout;
 
-const AdminHeader = () => {
+const AdminHeader = ({ drawerVisible, setDrawerVisible }) => {
   const userMenuItems = [
     {
       key: "profile",
@@ -33,8 +35,17 @@ const AdminHeader = () => {
 
   return (
     <Header className="flex items-center justify-between bg-white p-0 shadow-sm">
-      <div className="flex-1" />
-      <div className="flex items-center px-6">
+      <Button
+        type="text"
+        aria-label={drawerVisible ? "Close menu" : "Open menu"}
+        icon={drawerVisible ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        onClick={() => setDrawerVisible(!drawerVisible)}
+        className="text-gray-400 md:hidden"
+      />
+      <div className="block text-primary md:hidden">
+        <Logo width={30} height={32} />
+      </div>
+      <div className="ms-auto flex items-center px-6">
         <Dropdown
           menu={{ items: userMenuItems }}
           placement="bottom"

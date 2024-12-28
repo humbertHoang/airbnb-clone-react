@@ -40,7 +40,7 @@ const DashboardPage = () => {
 
       {/* Stats Cards */}
       <Row gutter={[16, 16]}>
-        <Col xs={24} sm={12} lg={6}>
+        <Col xs={24} sm={24} lg={12} xl={6}>
           <Card bordered={false}>
             <Statistic
               title="Tổng số phòng"
@@ -50,7 +50,7 @@ const DashboardPage = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} lg={6}>
+        <Col xs={24} sm={24} lg={12} xl={6}>
           <Card bordered={false}>
             <Statistic
               title="Tổng số đặt phòng"
@@ -60,7 +60,7 @@ const DashboardPage = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} lg={6}>
+        <Col xs={24} sm={24} lg={12} xl={6}>
           <Card bordered={false}>
             <Statistic
               title="Người dùng"
@@ -70,7 +70,7 @@ const DashboardPage = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} lg={6}>
+        <Col xs={24} sm={24} lg={12} xl={6}>
           <Card bordered={false}>
             <Statistic
               title="Doanh thu"

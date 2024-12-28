@@ -49,5 +49,8 @@ export const theme = {
       itemActiveBg: "#F7F7F7",
       itemHoverColor: "#FF385C",
     },
+    Form: {
+      labelFontSize: 15,
+    },
   },
 };

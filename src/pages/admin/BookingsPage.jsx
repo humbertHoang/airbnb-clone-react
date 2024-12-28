@@ -1,68 +1,68 @@
-import { Table, Button, Space, Input, Tag } from 'antd';
-import { useState } from 'react';
 import {
-  SearchOutlined,
-  EyeOutlined,
   CheckOutlined,
   CloseOutlined,
-} from '@ant-design/icons';
+  EyeOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { Button, Input, Space, Table, Tag } from "antd";
+import { useState } from "react";
 
 const BookingsPage = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
       sorter: (a, b) => a.id - b.id,
     },
     {
-      title: 'Phòng',
-      dataIndex: 'roomName',
-      key: 'roomName',
+      title: "Phòng",
+      dataIndex: "roomName",
+      key: "roomName",
       sorter: (a, b) => a.roomName.localeCompare(b.roomName),
     },
     {
-      title: 'Khách',
-      dataIndex: 'guestName',
-      key: 'guestName',
+      title: "Khách",
+      dataIndex: "guestName",
+      key: "guestName",
       sorter: (a, b) => a.guestName.localeCompare(b.guestName),
     },
     {
-      title: 'Ngày đến',
-      dataIndex: 'checkIn',
-      key: 'checkIn',
+      title: "Ngày đến",
+      dataIndex: "checkIn",
+      key: "checkIn",
       sorter: (a, b) => new Date(a.checkIn) - new Date(b.checkIn),
     },
     {
-      title: 'Ngày đi',
-      dataIndex: 'checkOut',
-      key: 'checkOut',
+      title: "Ngày đi",
+      dataIndex: "checkOut",
+      key: "checkOut",
       sorter: (a, b) => new Date(a.checkOut) - new Date(b.checkOut),
     },
     {
-      title: 'Trạng thái',
-      dataIndex: 'status',
-      key: 'status',
+      title: "Trạng thái",
+      dataIndex: "status",
+      key: "status",
       filters: [
-        { text: 'Đã xác nhận', value: 'confirmed' },
-        { text: 'Đang chờ', value: 'pending' },
-        { text: 'Đã hủy', value: 'cancelled' },
+        { text: "Đã xác nhận", value: "confirmed" },
+        { text: "Đang chờ", value: "pending" },
+        { text: "Đã hủy", value: "cancelled" },
       ],
       onFilter: (value, record) => record.status === value,
       render: (status) => {
         const colors = {
-          pending: 'gold',
-          confirmed: 'green',
-          cancelled: 'red',
+          pending: "gold",
+          confirmed: "green",
+          cancelled: "red",
         };
         return <Tag color={colors[status]}>{status.toUpperCase()}</Tag>;
       },
     },
     {
-      title: 'Actions',
-      key: 'actions',
+      title: "Actions",
+      key: "actions",
       render: (_, record) => (
         <Space>
           <Button
@@ -71,7 +71,7 @@ const BookingsPage = () => {
           >
             Details
           </Button>
-          {record.status === 'pending' && (
+          {record.status === "pending" && (
             <>
               <Button
                 type="primary"
@@ -95,15 +95,15 @@ const BookingsPage = () => {
   ];
 
   const handleViewDetails = (record) => {
-    console.log('View booking details:', record);
+    console.log("View booking details:", record);
   };
 
   const handleConfirm = (record) => {
-    console.log('Confirm booking:', record);
+    console.log("Confirm booking:", record);
   };
 
   const handleCancel = (record) => {
-    console.log('Cancel booking:', record);
+    console.log("Cancel booking:", record);
   };
 
   return (
@@ -121,7 +121,7 @@ const BookingsPage = () => {
       </div>
       <Table
         columns={columns}
-        // Replace with actual data from your API
+        // TODO: Replace with actual data from your API
         dataSource={[]}
         rowKey="id"
       />

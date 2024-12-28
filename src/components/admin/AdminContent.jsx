@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Layout } from "antd";
 
 const { Content } = Layout;
