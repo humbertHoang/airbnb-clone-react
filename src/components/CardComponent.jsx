@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
-const CardComponent = ({phong}) => {
+const CardComponent = ({phong,roomId}) => {
+  const navigate = useNavigate()
+  const handleNavigate = () => {
+    navigate(`room/${roomId}`)
+  }
   return (
-    <div className="flex flex-col gap-[5px] relative cursor-pointer">
+    <div className="flex flex-col gap-[5px] relative cursor-pointer" onClick={()=>handleNavigate()}>
       <img src={phong.hinhAnh} alt="" className="w-full h-64 md:h-80 lg:h-72 rounded-lg object-cover mb-3" />
       <div className="flex justify-between items-center">
         <h2 className="font-semibold truncate w-3/4">{phong.tenPhong}</h2>

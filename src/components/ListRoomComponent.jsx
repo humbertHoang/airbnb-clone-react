@@ -33,7 +33,7 @@ const ListRoomComponent = () => {
               key={phong.id}
               className="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
             >
-              <CardComponent phong={phong} />
+              <CardComponent phong={phong} roomId={phong.id} />
             </div>
           ))}
         </div>

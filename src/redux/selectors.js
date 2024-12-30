@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 import unorm from "unorm";
 // user slice
 export const userSelector = (state) => state.user.user;
+export const tokenSelector = (state) => state.user.token;
 //filter slice
 export const tienNghiSelector = (state) => state.filter.tienNghi;
 export const roomAndBedSelector = (state) => state.filter.romAndBed;
