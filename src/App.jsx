@@ -26,7 +26,7 @@ const App = () => {
             {/* Client Routes */}
             <Route path="/" element={<ClientTemplate />}>
               <Route path="" element={<HomePage />} />
-              <Route path="room/:id" element={<DetailRoomPage />} />
+              <Route path="room/:roomId" element={<DetailRoomPage />} />
               <Route path="login" element={<LoginComponent />} />
               <Route path="register" element={<SignUpComponent />} />
             </Route>

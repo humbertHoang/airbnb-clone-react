@@ -8,7 +8,6 @@ const DetailRoomPage = () => {
   const roomId = useParams().roomId
   const [detailRoom,setDetailRoom] = useState({})
   const listRoom = useSelector(listPhongSelector)
-  // console.log("🚀 ~ DetailRoomPage ~ listRoom:", listRoom)
   useEffect(()=> {
   if(listRoom.length !== 0, roomId) setDetailRoom(listRoom.find((room) => room.id == roomId))
   },[roomId,listRoom])

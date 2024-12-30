@@ -9,7 +9,6 @@ const PostCommentBox = ({ userId, avatar, roomId,fetchComments }) => {
   const token = useSelector(tokenSelector);
   const [rating, setRating] = useState(4);
   const [noidung, setNoidung] = useState('');
-  console.log('Rating:', rating);
   const handleComment = async () => {
     if (!userId) {
       alert('Vui lòng đăng nhập');
