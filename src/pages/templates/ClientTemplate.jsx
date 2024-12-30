@@ -18,11 +18,11 @@ const ClientTemplate = () => {
   useEffect(() => initializeUser(), [dispatch]);
   return (
     <>
-    <NavBarComponent/>
-    <Outlet/>
-    <FooterComponent/>
+      <NavBarComponent />
+      <Outlet />
+      <FooterComponent />
     </>
-  )
-}
+  );
+};
 
-export default ClientTemplate
+export default ClientTemplate;

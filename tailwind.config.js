@@ -1,43 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: {
+    files: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    extract,
+  },
   theme: {
+    fontFamily: {
+      sans: ['"Inter", sans-serif'],
+    },
+    screens,
+    fontSize,
     extend: {
-      fontFamily: {
-        body: [
-          'Roboto',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'system-ui',
-          'Segoe UI',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'sans-serif',
-          'Apple Color Emoji',
-          'Segoe UI Emoji',
-          'Segoe UI Symbol',
-          'Noto Color Emoji',
-        ],
-        sans: [
-          'Roboto',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'system-ui',
-          'Segoe UI',
-          'Helvetica Neue',
-          'Arial',
-          'Noto Sans',
-          'sans-serif',
-          'Apple Color Emoji',
-          'Segoe UI Emoji',
-          'Segoe UI Symbol',
-          'Noto Color Emoji',
-        ],
+      colors: {
+        primary: "#FF385C",
       },
     },
   },
-  plugins: [],
+  plugins: [fluid],
 };

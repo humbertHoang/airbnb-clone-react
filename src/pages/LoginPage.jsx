@@ -1,10 +1,8 @@
-import React from 'react';
-
 const LoginPage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
       {/* Form Section */}
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg sm:max-w-lg lg:max-w-xl">
+      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg sm:max-w-lg lg:max-w-xl">
         <h2 className="text-center text-2xl font-semibold text-gray-800">
           Đăng Nhập
         </h2>
@@ -58,14 +56,12 @@ const LoginPage = () => {
         </form>
         {/* Register Link */}
         <p className="mt-4 text-center text-gray-500">
-          Không có tài khoản?{' '}
+          Không có tài khoản?{" "}
           <a href="#" className="text-blue-500 hover:underline">
             Đăng ký tại đây
           </a>
         </p>
       </div>
-
-
     </div>
   );
 };
