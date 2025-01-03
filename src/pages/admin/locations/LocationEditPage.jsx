@@ -1,33 +1,32 @@
-import UserForm from "@/components/admin/users/UserForm";
+import LocationForm from "@/components/admin/locations/LocationForm";
 import {
-  useGetUserByIdQuery,
-  useUpdateUserMutation,
-} from "@/redux/api/userApi";
+  useGetLocationByIdQuery,
+  useUpdateLocationMutation,
+} from "@/redux/api/locationApi";
 import { App, Button, Card, Result, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-const UserEditPage = () => {
+
+const LocationEditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { message } = App.useApp();
 
   const {
-    data: user,
+    data: location,
     isLoading,
     isError,
     error,
-  } = useGetUserByIdQuery(id, {
+  } = useGetLocationByIdQuery(id, {
     skip: !id || isNaN(Number(id)),
   });
-  const [updateUser] = useUpdateUserMutation();
+  const [updateLocation] = useUpdateLocationMutation();
 
   useEffect(() => {
     if (isError) {
       message.error(
-        error.data?.message ||
-          error.message ||
-          "Lấy thông tin người dùng thất bại",
+        error.data?.message || error.message || "Lấy thông tin vị trí thất bại",
       );
     }
   }, [error, isError, message]);
@@ -35,21 +34,21 @@ const UserEditPage = () => {
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
-      await updateUser({ id, ...values }).unwrap();
-      message.success("Cập nhật người dùng thành công");
-      navigate("/admin/users");
+      await updateLocation({ id, ...values }).unwrap();
+      message.success("Cập nhật vị trí thành công");
+      navigate("/admin/locations");
     } catch (error) {
-      message.error("Cập nhật người dùng thất bại: " + error.message);
+      message.error("Cập nhật vị trí thất bại: " + error.message);
     } finally {
       setLoading(false);
     }
   };
 
   const handleCancel = () => {
-    navigate("/admin/users");
+    navigate("/admin/locations");
   };
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return (
       <div className="flex min-h-[200px] items-center justify-center">
         <Spin size="large" />
@@ -57,35 +56,31 @@ const UserEditPage = () => {
     );
   }
 
-  if (!user) {
+  if (!location) {
     return (
       <Result
-        status="warning"
-        title="Không tìm thấy người dùng"
-        subTitle="Người dùng không tồn tại hoặc đã bị xóa"
-        extra={[
-          <Button
-            key="back"
-            type="primary"
-            onClick={() => navigate("/admin/users")}
-          >
+        status="error"
+        title="Không tìm thấy vị trí"
+        subTitle="Vị trí bạn đang tìm không tồn tại hoặc đã bị xóa"
+        extra={
+          <Button type="primary" onClick={() => navigate("/admin/locations")}>
             Quay lại danh sách
-          </Button>,
-        ]}
+          </Button>
+        }
       />
     );
   }
 
   return (
     <Card
-      title="Chỉnh sửa thông tin người dùng"
+      title="Chỉnh sửa vị trí"
       className="shadow-md"
       classNames={{
         title: "text-xl font-semibold",
       }}
     >
-      <UserForm
-        initialValues={user}
+      <LocationForm
+        initialValues={location}
         onSubmit={handleSubmit}
         onCancel={handleCancel}
         loading={loading}
@@ -95,4 +90,4 @@ const UserEditPage = () => {
   );
 };
 
-export default UserEditPage;
+export default LocationEditPage;

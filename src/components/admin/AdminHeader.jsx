@@ -60,8 +60,9 @@ const AdminHeader = ({ drawerVisible, setDrawerVisible }) => {
                   size={32}
                   src={
                     <img
-                      src="https://robohash.org/admin.png?set=set4"
+                      src="https://robohash.org/admin.png?set=set5"
                       alt="avatar"
+                      loading="lazy"
                     />
                   }
                   className="bg-rose-200"

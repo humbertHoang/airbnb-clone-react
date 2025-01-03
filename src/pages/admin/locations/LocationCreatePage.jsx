@@ -1,30 +1,31 @@
-import UserForm from "@/components/admin/users/UserForm";
-import { useCreateUserMutation } from "@/redux/api/userApi";
+import LocationForm from "@/components/admin/locations/LocationForm";
+import { useCreateLocationMutation } from "@/redux/api/locationApi";
 import { App, Card, Spin } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const UserCreatePage = () => {
+const LocationCreatePage = () => {
   const navigate = useNavigate();
   const { message } = App.useApp();
   const [loading, setLoading] = useState(false);
-  const [createUser] = useCreateUserMutation();
+  const [createLocation] = useCreateLocationMutation();
 
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
-      await createUser(values).unwrap();
-      message.success("Tạo người dùng thành công");
-      navigate("/admin/users");
+      await createLocation(values).unwrap();
+      message.success("Tạo vị trí thành công");
+      navigate("/admin/locations");
     } catch (error) {
-      message.error("Tạo người dùng thất bại: " + error.message);
+      console.log(error);
+      message.error("Tạo vị trí thất bại: " + error.message);
     } finally {
       setLoading(false);
     }
   };
 
   const handleCancel = () => {
-    navigate("/admin/users");
+    navigate("/admin/locations");
   };
 
   if (loading) {
@@ -37,13 +38,13 @@ const UserCreatePage = () => {
 
   return (
     <Card
-      title="Thêm người dùng"
+      title="Thêm vị trí"
       className="shadow-md"
       classNames={{
         title: "text-xl font-semibold",
       }}
     >
-      <UserForm
+      <LocationForm
         onSubmit={handleSubmit}
         onCancel={handleCancel}
         loading={loading}
@@ -53,4 +54,4 @@ const UserCreatePage = () => {
   );
 };
 
-export default UserCreatePage;
+export default LocationCreatePage;
