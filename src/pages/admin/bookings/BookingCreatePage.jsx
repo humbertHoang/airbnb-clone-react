@@ -1,32 +1,30 @@
-import UserForm from "@/components/admin/users/UserForm";
-import { useCreateUserMutation } from "@/redux/api/userApi";
+import BookingForm from "@/components/admin/bookings/BookingForm";
+import { useCreateBookingMutation } from "@/redux/api/bookingApi";
 import { App, Card, Spin } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const UserCreatePage = () => {
+const BookingCreatePage = () => {
   const navigate = useNavigate();
   const { message } = App.useApp();
+  const [createBooking] = useCreateBookingMutation();
   const [loading, setLoading] = useState(false);
-  const [createUser] = useCreateUserMutation();
 
   const handleSubmit = async (values) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      await createUser(values).unwrap();
-      message.success("Tạo người dùng thành công");
-      navigate("/admin/users");
+      await createBooking(values).unwrap();
+      message.success("Tạo đặt phòng thành công");
+      navigate("/admin/bookings");
     } catch (error) {
-      message.error("Tạo người dùng thất bại: " + error.message);
+      message.error("Tạo đặt phòng thất bại: " + error.message);
     } finally {
       setLoading(false);
     }
   };
-
   const handleCancel = () => {
-    navigate("/admin/users");
+    navigate("/admin/bookings");
   };
-
   if (loading) {
     return (
       <div className="flex min-h-[200px] items-center justify-center">
@@ -34,16 +32,15 @@ const UserCreatePage = () => {
       </div>
     );
   }
-
   return (
     <Card
-      title="Thêm người dùng"
+      title="Thêm đặt phòng"
       className="shadow-md"
       classNames={{
         title: "text-xl font-semibold",
       }}
     >
-      <UserForm
+      <BookingForm
         onSubmit={handleSubmit}
         onCancel={handleCancel}
         loading={loading}
@@ -53,4 +50,4 @@ const UserCreatePage = () => {
   );
 };
 
-export default UserCreatePage;
+export default BookingCreatePage;

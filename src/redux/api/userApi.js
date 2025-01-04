@@ -8,25 +8,44 @@ export const userApi = createApi({
       headers.set("tokenCybersoft", import.meta.env.VITE_TOKEN_CYBERSOFT);
       const token = getState().user.token;
       if (token) {
-        headers.set("authorization", `Bearer ${token}`);
+        headers.set("token", `${token}`);
       }
       return headers;
+    },
+    validateStatus: (res) => {
+      if (res.status === 404)
+        return { error: { status: 404, data: "Not Found" } };
+      return res.ok;
     },
   }),
   tagTypes: ["User", "Users"],
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: ({ pageIndex = 1, pageSize = 10, keywords = "" }) => ({
+      query: ({ pageIndex = 1, pageSize = 10, keyword = "" }) => ({
         url: `users/phan-trang-tim-kiem`,
-        params: { pageIndex, pageSize, keywords },
-      }),
-      transformResponse: (response) => ({
-        users: response.content.data,
-        pagination: {
-          pageIndex: response.content.pageIndex,
-          pageSize: response.content.pageSize,
-          totalRow: response.content.totalRow,
+        params: {
+          pageIndex,
+          pageSize,
+          keyword: keyword.trim(),
         },
+      }),
+      transformResponse: (response) => {
+        return {
+          users: response.content.data.map((user) => ({
+            ...user,
+            key: user.id,
+          })),
+          pagination: {
+            pageIndex: response.content.pageIndex,
+            pageSize: response.content.pageSize,
+            totalRow: response.content.totalRow,
+          },
+        };
+      },
+      transformErrorResponse: (response) => ({
+        message:
+          response.data?.content ||
+          "Đã có lỗi xảy ra khi lấy danh sách người dùng",
       }),
       providesTags: (result) =>
         result
@@ -51,7 +70,7 @@ export const userApi = createApi({
       },
       providesTags: (result, error, id) => [{ type: "User", id }],
     }),
-    addUser: builder.mutation({
+    createUser: builder.mutation({
       query: (user) => ({
         url: "users",
         method: "POST",
@@ -78,13 +97,25 @@ export const userApi = createApi({
       }),
       invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
+    uploadAvatar: builder.mutation({
+      query: ({ formData }) => ({
+        url: `users/upload-avatar`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ({ id }) => [
+        { type: "User", id },
+        { type: "Users", id: "LIST" },
+      ],
+    }),
   }),
 });
 
 export const {
   useGetUsersQuery,
   useGetUserByIdQuery,
-  useAddUserMutation,
+  useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useUploadAvatarMutation,
 } = userApi;

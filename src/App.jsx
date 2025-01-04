@@ -3,10 +3,16 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { ToastContainer } from "react-toastify";
 import LoginComponent from "./components/LoginComponent";
 import SignUpComponent from "./components/Singupcomponent";
-import BookingsPage from "./pages/admin/BookingsPage";
+import BookingCreatePage from "./pages/admin/bookings/BookingCreatePage";
+import BookingEditPage from "./pages/admin/bookings/BookingEditPage";
+import BookingsPage from "./pages/admin/bookings/BookingsPage";
 import DashboardPage from "./pages/admin/DashboardPage";
-import LocationsPage from "./pages/admin/LocationsPage";
-import RoomsPage from "./pages/admin/RoomsPage";
+import LocationCreatePage from "./pages/admin/locations/LocationCreatePage";
+import LocationEditPage from "./pages/admin/locations/LocationEditPage";
+import LocationsPage from "./pages/admin/locations/LocationsPage";
+import RoomCreatePage from "./pages/admin/rooms/RoomCreatePage";
+import RoomEditPage from "./pages/admin/rooms/RoomEditPage";
+import RoomsPage from "./pages/admin/rooms/RoomsPage";
 import UserCreatePage from "./pages/admin/users/UserCreatePage";
 import UserEditPage from "./pages/admin/users/UserEditPage";
 import UsersPage from "./pages/admin/users/UsersPage";
@@ -37,12 +43,18 @@ const App = () => {
             <Route path="/admin" element={<AdminTemplate />}>
               <Route index element={<DashboardPage />} />
               <Route path="dashboard" element={<DashboardPage />} />
-              <Route path="rooms" element={<RoomsPage />} />
               <Route path="users" element={<UsersPage />} />
-              <Route path="users/create" element={<UserCreatePage />} />
+              <Route path="users/add" element={<UserCreatePage />} />
               <Route path="users/edit/:id" element={<UserEditPage />} />
-              <Route path="bookings" element={<BookingsPage />} />
               <Route path="locations" element={<LocationsPage />} />
+              <Route path="locations/add" element={<LocationCreatePage />} />
+              <Route path="locations/edit/:id" element={<LocationEditPage />} />
+              <Route path="rooms" element={<RoomsPage />} />
+              <Route path="rooms/add" element={<RoomCreatePage />} />
+              <Route path="rooms/edit/:id" element={<RoomEditPage />} />
+              <Route path="bookings" element={<BookingsPage />} />
+              <Route path="bookings/add" element={<BookingCreatePage />} />
+              <Route path="bookings/edit/:id" element={<BookingEditPage />} />
             </Route>
 
             {/* 404 Route */}

@@ -17,6 +17,7 @@ const UserForm = ({
     email: "",
     phone: "",
     role: "USER",
+    gender: "true",
     ...(isCreateMode && { password: "", confirmPassword: "" }),
     ...initialValues,
     birthday: initialValues?.birthday ? dayjs(initialValues.birthday) : null,
@@ -41,6 +42,7 @@ const UserForm = ({
       initialValues={defaultValues}
       validationSchema={userValidationSchema(isCreateMode)}
       onSubmit={handleSubmit}
+      enableReinitialize
     >
       {({
         values,
@@ -80,6 +82,10 @@ const UserForm = ({
               aria-label="Full Name"
               aria-required="true"
               aria-invalid={errors.name && touched.name ? "true" : "false"}
+              aria-describedby={
+                errors.name && touched.name ? "name-error" : undefined
+              }
+              status={errors.name && touched.name ? "error" : ""}
             />
           </Form.Item>
 
@@ -96,6 +102,13 @@ const UserForm = ({
               onBlur={handleBlur}
               placeholder="Nhập email"
               type="email"
+              aria-label="Email Address"
+              aria-required="true"
+              aria-invalid={errors.email && touched.email ? "true" : "false"}
+              aria-describedby={
+                errors.email && touched.email ? "email-error" : undefined
+              }
+              status={errors.email && touched.email ? "error" : ""}
             />
           </Form.Item>
 
