@@ -16,6 +16,7 @@ import Page404 from "./pages/Page404";
 import AdminTemplate from "./pages/templates/AdminTemplate";
 import ClientTemplate from "./pages/templates/ClientTemplate";
 import { theme } from "./theme/antd.config";
+import UserProfilePage from "./pages/UserProfilePage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="room/:roomId" element={<DetailRoomPage />} />
               <Route path="login" element={<LoginComponent />} />
               <Route path="register" element={<SignUpComponent />} />
+              <Route path="profile" element={<UserProfilePage />} />
             </Route>
 
             {/* Admin Routes */}

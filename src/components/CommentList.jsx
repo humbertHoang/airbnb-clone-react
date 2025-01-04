@@ -5,7 +5,7 @@ import React from 'react';
 const CommentList = ({ comments = [] }) => { 
   return (
     <div className="w-full">
-      <div className=" max-h-96 flex flex-col gap-4 border border-gray-300 bg-gray-50 p-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 hover:scrollbar-thumb-gray-500">
+      <div className=" max-h-96 flex flex-col gap-4 border border-gray-300 bg-gray-50 p-4 overflow-y-scroll ">
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div
