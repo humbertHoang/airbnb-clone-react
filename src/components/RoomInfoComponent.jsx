@@ -25,7 +25,6 @@ const RoomInfoComponent = ({ detailRoom }) => {
       console.error('Error fetching comments:', error);
     }
   };
-
   useEffect(() => {
     fetchComments();
   }, [detailRoom]);

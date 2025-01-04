@@ -19,17 +19,6 @@ const ClientTemplate = () => {
   const isErrorPhong = useSelector(isErrorPhongSelector);
   const isLoadingViTri = useSelector(isLoadingViTriSelector);
   const isErrorViTri = useSelector(isErrorViTriSelector);
-
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      await Promise.all([
-        dispatch(fetchListPhong()),
-        dispatch(fetchListViTri()),
-      ]);
-    };
-    fetchInitialData();
-  }, [dispatch]);
-
   const initializeUser = () => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -38,8 +27,16 @@ const ClientTemplate = () => {
       dispatch(changeToken(token));
     }
   };
-
-  useEffect(() => initializeUser(), [dispatch]);
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      await Promise.all([
+        dispatch(fetchListPhong()),
+        dispatch(fetchListViTri()),
+      ]);
+    };
+    fetchInitialData();
+    initializeUser();
+  }, [dispatch]);
 
   // Xử lý giao diện khi đang tải dữ liệu
   if (isLoadingPhong && isLoadingViTri) {

@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { changeUser } from "../redux/slice/userSlice";
 
 const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -39,11 +42,13 @@ const LoginComponent = () => {
             password: values.password,
           },
         });
+        dispatch(changeUser(response.data.content.user));
         localStorage.setItem("token", response.data.content.token);
         localStorage.setItem(
           "user",
           JSON.stringify(response.data.content.user),
         );
+
         toast.success("Đăng nhập thành công");
         navigate("/");
       } catch (error) {
