@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { use, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { listViTriSelector } from '../redux/selectors';
+import { useNavigate } from 'react-router';
 
 const ListViTriGanDayComponent = () => {
   const listViTri = useSelector(listViTriSelector);
@@ -17,6 +18,8 @@ const ListViTriGanDayComponent = () => {
       scrollContainerRef.current.scrollBy({ left: 250, behavior: 'smooth' });
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto px-2 py-3 md:px-4 lg:px-0 lg:py-8">
@@ -48,7 +51,7 @@ const ListViTriGanDayComponent = () => {
               key={vitri.id}
               className="inline-block min-w-[250px] cursor-pointer rounded-md hover:bg-gray-200"
             >
-              <div className="flex items-start gap-2">
+              <div className="flex items-start gap-2" onClick={() => navigate(`/vi-tri/${vitri.id}`)}>
                 <img
                   src={vitri.hinhAnh}
                   alt={vitri.tenViTri}

@@ -23,6 +23,7 @@ import AdminTemplate from "./pages/templates/AdminTemplate";
 import ClientTemplate from "./pages/templates/ClientTemplate";
 import { theme } from "./theme/antd.config";
 import UserProfilePage from "./pages/UserProfilePage";
+import ViTriPage from "./pages/ViTriPage";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
               <Route path="login" element={<LoginComponent />} />
               <Route path="register" element={<SignUpComponent />} />
               <Route path="profile" element={<UserProfilePage />} />
+              <Route path="vi-tri/:viTriId" element={<ViTriPage />} />
             </Route>
 
             {/* Admin Routes */}
