@@ -30,7 +30,7 @@ const ViTriPage = () => {
   }, [viTriId]);
 
   return (
-    <div className="container mx-auto px-2 md:px-4 lg:px-0">
+    <div className="container mx-auto px-2 md:px-4 lg:px-0 mt-6">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
           <h1 className="text-2xl font-bold mb-4">Chỗ ở tại khu vực bạn đã chọn</h1>

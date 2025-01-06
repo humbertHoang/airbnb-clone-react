@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { listPhongSelector } from "../redux/selectors";
-
+import dayjs from "dayjs";
 const ListPhongDaDatComponent = ({ userId }) => {
   const listPhong = useSelector(listPhongSelector);
   const [listPhongDaDat, setListPhongDaDat] = useState([]);
@@ -35,14 +35,28 @@ const ListPhongDaDatComponent = ({ userId }) => {
           {listPhongDaDat.map((phong) => {
             const phongInfo = listPhong.find((p) => p.id === phong.maPhong);
             return (
-              <div key={phong.maPhong} className="flex items-center gap-6 p-4 border-b border-gray-200">
+              <div
+                key={phong.maPhong}
+                className="flex items-center gap-6 border-b border-gray-200 p-4"
+              >
                 <div className="w-1/4">
-                <img src={phongInfo?.hinhAnh} alt="Room" className="w-full h-24 object-cover object-left-top"/></div>
+                  <img
+                    src={phongInfo?.hinhAnh}
+                    alt="Room"
+                    className="h-24 w-full object-cover object-left-top"
+                  />
+                </div>
                 <div className="w-3/4">
-                  <h2 className="font-bold text-xl">{phongInfo?.tenPhong}</h2>
+                  <h2 className="text-xl font-bold">{phongInfo?.tenPhong}</h2>
                   <p className="line-clamp-2">{phongInfo?.moTa}</p>
-                  <p>Ngày đi: {phong.ngayDen}</p>
-                  <p>Ngày kết thúc: {phong.ngayDi}</p>
+                  <p>
+                    Ngày đi:{" "}
+                    {dayjs(phong.ngayDen).format("DD [tháng] MM, YYYY")}
+                  </p>
+                  <p>
+                    Ngày trả phòng:{" "}
+                    {dayjs(phong.ngayDi).format("DD [tháng] MM, YYYY")}
+                  </p>
                 </div>
               </div>
             );
