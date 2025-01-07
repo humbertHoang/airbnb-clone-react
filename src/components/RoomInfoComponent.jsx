@@ -4,6 +4,7 @@ import CommentList from './CommentList';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../redux/selectors';
 import PostCommentBox from './PostCommentBox';
+import CardBookingComponent from './CardBookingComponent';
 
 const RoomInfoComponent = ({ detailRoom }) => {
   const user = useSelector(userSelector);
@@ -37,7 +38,7 @@ const RoomInfoComponent = ({ detailRoom }) => {
           alt={`${detailRoom?.tePhong} img`}
         />
       </div>
-      <div className="mt-3 flex flex-col md:mt-6 md:flex-row lg:mt-9">
+      <div className="mt-3 flex flex-col md:mt-6 md:flex-row lg:mt-9 gap-4">
         <div className="w-full md:w-1/2">
           <h2 className="text-xl font-bold">{detailRoom?.tenPhong}</h2>
           <div className="flex flex-wrap items-center text-[#222]">
@@ -113,7 +114,9 @@ const RoomInfoComponent = ({ detailRoom }) => {
             fetchComments={fetchComments}
           />
         </div>
-        <div></div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <CardBookingComponent detailRoom = {detailRoom} userId={user?.id} />
+        </div>
       </div>
     </div>
   );
