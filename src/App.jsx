@@ -21,9 +21,9 @@ import HomePage from "./pages/HomePage";
 import Page404 from "./pages/Page404";
 import AdminTemplate from "./pages/templates/AdminTemplate";
 import ClientTemplate from "./pages/templates/ClientTemplate";
-import { theme } from "./theme/antd.config";
 import UserProfilePage from "./pages/UserProfilePage";
 import ViTriPage from "./pages/ViTriPage";
+import { theme } from "./theme/antd.config";
 
 const App = () => {
   return (

@@ -9,7 +9,7 @@
 html,
 body {
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100dvh;
   scroll-behavior: smooth;
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -1,0 +1,22 @@
+.custom-icon div {
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.custom-icon div:hover {
+  transform: scale(1.05);
+  background-color: #ccc;
+}
+
+.custom-icon > div:focus {
+  outline: none;
+  background-color: black;
+  color: white;
+}
+
+.leaflet-popup-close-button {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 20px !important;
+}

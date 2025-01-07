@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import NavBarComponent from "../../components/NavBarComponent";
-import { Outlet } from "react-router";
-import FooterComponent from "../../components/FooterComponent";
-import { useDispatch, useSelector } from "react-redux";
-import { changeToken, changeUser } from "../../redux/slice/userSlice";
+import FooterComponent from "@/components/FooterComponent";
+import NavBarComponent from "@/components/NavBarComponent";
 import {
   isErrorPhongSelector,
   isErrorViTriSelector,
   isLoadingPhongSelector,
   isLoadingViTriSelector,
-} from "../../redux/selectors";
-import { fetchListPhong } from "../../redux/slice/phongSlice";
-import { fetchListViTri } from "./../../redux/slice/viTriSlice";
+} from "@/redux/selectors";
+import { fetchListPhong } from "@/redux/slice/phongSlice";
+import { changeToken, changeUser } from "@/redux/slice/userSlice";
+import { fetchListViTri } from "@/redux/slice/viTriSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet } from "react-router";
 
 const ClientTemplate = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const ClientTemplate = () => {
   const isErrorPhong = useSelector(isErrorPhongSelector);
   const isLoadingViTri = useSelector(isLoadingViTriSelector);
   const isErrorViTri = useSelector(isErrorViTriSelector);
+
   const initializeUser = () => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -38,7 +39,6 @@ const ClientTemplate = () => {
     initializeUser();
   }, [dispatch]);
 
-  // Xử lý giao diện khi đang tải dữ liệu
   if (isLoadingPhong && isLoadingViTri) {
     return (
       <div className="flex h-screen flex-col items-center justify-center">
@@ -50,7 +50,6 @@ const ClientTemplate = () => {
     );
   }
 
-  // Xử lý giao diện khi gặp lỗi
   if (isErrorPhong || isErrorViTri) {
     return (
       <div className="flex h-screen flex-col items-center justify-center">

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router';
-import { userSelector } from '../redux/selectors';
-import { logoutUser } from '../redux/slice/userSlice';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router";
+import { userSelector } from "../redux/selectors";
+import { logoutUser } from "../redux/slice/userSlice";
 
 const NavBarComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,8 +13,8 @@ const NavBarComponent = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     dispatch(logoutUser());
   };
 
@@ -28,11 +28,11 @@ const NavBarComponent = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -40,7 +40,7 @@ const NavBarComponent = () => {
     <>
       <nav
         className={`sticky top-0 z-50 bg-white px-4 py-2 ${
-          hasScrolled ? 'shadow-md' : ''
+          hasScrolled ? "shadow-md" : ""
         } transition-shadow duration-300`}
       >
         <div className="container mx-auto flex items-center justify-between">
@@ -59,7 +59,7 @@ const NavBarComponent = () => {
                   className="flex items-center gap-x-2 rounded-full p-2 transition hover:bg-gray-100 hover:shadow-md"
                 >
                   <img
-                    src={userInfo.avatar || '/default-avatar.png'}
+                    src={userInfo.avatar || "/default-avatar.png"}
                     alt="User Avatar"
                     className="h-10 w-10 rounded-full border border-gray-300"
                   />
@@ -104,8 +104,12 @@ const NavBarComponent = () => {
                 <p className="text-sm font-semibold text-gray-700">
                   {userInfo.name}
                 </p>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 shadow overflow-hidden">
-                  <img src={userInfo.avatar || '/default-avatar.png'} alt="" className='w-full h-full object-center' />
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gray-200 shadow">
+                  <img
+                    src={userInfo.avatar || "/default-avatar.png"}
+                    alt=""
+                    className="h-full w-full object-center"
+                  />
                 </div>
               </div>
             ) : (
@@ -133,14 +137,12 @@ const NavBarComponent = () => {
             {/* Mobile Menu */}
             <div
               className={`${
-                isMenuOpen ? 'block' : 'hidden'
+                isMenuOpen ? "block" : "hidden"
               } absolute right-2 top-12 z-20 w-48 rounded-lg border bg-white shadow-md`}
             >
               {userInfo ? (
                 <>
-                  <button
-                    className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
-                  >
+                  <button className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">
                     Tài khoản
                   </button>
                   <button

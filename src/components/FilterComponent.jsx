@@ -1,53 +1,52 @@
-import React, { useState } from 'react';
-import TienNghiFilterComponent from './TienNghiFilterComponent';
-import RoomAndBedFilterComponent from './RoomAndBedFilterComponent';
-import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import {
   changeGiaPhong,
   changeSearchBar,
   changeTienNghi,
   changRoomAndBed,
-  resetFilter,
-} from '../redux/slice/filterSlice';
-import PriceRangeComponent from './PriceRangeComponent';
-import { toast } from 'react-toastify';
+} from "../redux/slice/filterSlice";
+import PriceRangeComponent from "./PriceRangeComponent";
+import RoomAndBedFilterComponent from "./RoomAndBedFilterComponent";
+import TienNghiFilterComponent from "./TienNghiFilterComponent";
 
 const FilterComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [listTienNghi, setListTienNghi] = useState([
-    { name: 'Wifi', icon: './icon/svgWifi.svg', select: false, code: 'wifi' },
+    { name: "Wifi", icon: "./icon/svgWifi.svg", select: false, code: "wifi" },
     {
-      name: 'Máy Giặt',
-      icon: '/icon/svgMayGiac.svg',
+      name: "Máy Giặt",
+      icon: "/icon/svgMayGiac.svg",
       select: false,
-      code: 'mayGiat',
+      code: "mayGiat",
     },
     {
-      name: 'Bàn Ủi',
-      icon: '/icon/svgBanLa.svg',
+      name: "Bàn Ủi",
+      icon: "/icon/svgBanLa.svg",
       select: false,
-      code: 'banLa',
+      code: "banLa",
     },
-    { name: 'Tivi', icon: '/icon/svgtivi.svg', select: false, code: 'tivi' },
+    { name: "Tivi", icon: "/icon/svgtivi.svg", select: false, code: "tivi" },
     {
-      name: 'Điều hòa',
-      icon: '/icon/svgdieuHoa.svg',
+      name: "Điều hòa",
+      icon: "/icon/svgdieuHoa.svg",
       select: false,
-      code: 'dieuHoa',
+      code: "dieuHoa",
     },
-    { name: 'Bếp', icon: '/icon/svgbep.svg', select: false, code: 'bep' },
-    { name: 'Đỗ xe', icon: '/icon/svgdoXe.svg', select: false, code: 'doXe' },
+    { name: "Bếp", icon: "/icon/svgbep.svg", select: false, code: "bep" },
+    { name: "Đỗ xe", icon: "/icon/svgdoXe.svg", select: false, code: "doXe" },
     {
-      name: 'Hồ bơi',
-      icon: '/icon/svghoBoi.svg',
+      name: "Hồ bơi",
+      icon: "/icon/svghoBoi.svg",
       select: false,
-      code: 'hoBoi',
+      code: "hoBoi",
     },
   ]);
   const [listRoomAndBed, setListRoomAndBed] = useState([
-    { name: 'Phòng Ngủ', code: 'phongNgu', soLuong: 1 },
-    { name: 'Giường', code: 'giuong', soLuong: 1 },
-    { name: 'Phòng Tắm', code: 'phongTam', soLuong: 1 },
+    { name: "Phòng Ngủ", code: "phongNgu", soLuong: 1 },
+    { name: "Giường", code: "giuong", soLuong: 1 },
+    { name: "Phòng Tắm", code: "phongTam", soLuong: 1 },
   ]);
   const [giaPhong, setGiaPhong] = useState({ tu: undefined, den: undefined });
   const dispatch = useDispatch();
@@ -55,7 +54,7 @@ const FilterComponent = () => {
     if (giaPhong.tu) {
       if (giaPhong.den) {
         if (giaPhong.tu > giaPhong.den) {
-          toast.error('khoảng giá phòng không hợp lệ');
+          toast.error("khoảng giá phòng không hợp lệ");
           return;
         }
         dispatch(changeGiaPhong(giaPhong));
@@ -64,7 +63,7 @@ const FilterComponent = () => {
     }
     if (giaPhong.den) {
       if (giaPhong.tu > giaPhong.den) {
-        toast.error('khoảng giá phòng không hợp lệ');
+        toast.error("khoảng giá phòng không hợp lệ");
         return;
       }
       dispatch(changeGiaPhong(giaPhong));
@@ -76,60 +75,50 @@ const FilterComponent = () => {
   };
   const handleResetFilter = () => {
     setListTienNghi([
-      { name: 'Wifi', icon: './icon/svgWifi.svg', select: false, code: 'wifi' },
+      { name: "Wifi", icon: "./icon/svgWifi.svg", select: false, code: "wifi" },
       {
-        name: 'Máy Giặt',
-        icon: '/icon/svgMayGiac.svg',
+        name: "Máy Giặt",
+        icon: "/icon/svgMayGiac.svg",
         select: false,
-        code: 'mayGiat',
+        code: "mayGiat",
       },
       {
-        name: 'Bàn Ủi',
-        icon: '/icon/svgBanLa.svg',
+        name: "Bàn Ủi",
+        icon: "/icon/svgBanLa.svg",
         select: false,
-        code: 'banLa',
+        code: "banLa",
       },
-      { name: 'Tivi', icon: '/icon/svgtivi.svg', select: false, code: 'tivi' },
+      { name: "Tivi", icon: "/icon/svgtivi.svg", select: false, code: "tivi" },
       {
-        name: 'Điều hòa',
-        icon: '/icon/svgdieuHoa.svg',
+        name: "Điều hòa",
+        icon: "/icon/svgdieuHoa.svg",
         select: false,
-        code: 'dieuHoa',
+        code: "dieuHoa",
       },
-      { name: 'Bếp', icon: '/icon/svgbep.svg', select: false, code: 'bep' },
-      { name: 'Đỗ xe', icon: '/icon/svgdoXe.svg', select: false, code: 'doXe' },
+      { name: "Bếp", icon: "/icon/svgbep.svg", select: false, code: "bep" },
+      { name: "Đỗ xe", icon: "/icon/svgdoXe.svg", select: false, code: "doXe" },
       {
-        name: 'Hồ bơi',
-        icon: '/icon/svghoBoi.svg',
+        name: "Hồ bơi",
+        icon: "/icon/svghoBoi.svg",
         select: false,
-        code: 'hoBoi',
+        code: "hoBoi",
       },
     ]);
-
     setListRoomAndBed([
-      { name: 'Phòng Ngủ', code: 'phongNgu', soLuong: 1 },
-      { name: 'Giường', code: 'giuong', soLuong: 1 },
-      { name: 'Phòng Tắm', code: 'phongTam', soLuong: 1 },
+      { name: "Phòng Ngủ", code: "phongNgu", soLuong: 1 },
+      { name: "Giường", code: "giuong", soLuong: 1 },
+      { name: "Phòng Tắm", code: "phongTam", soLuong: 1 },
     ]);
     setGiaPhong({ tu: undefined, den: undefined });
   };
   isOpen
-    ? document.body.classList.add('overflow-hidden')
-    : document.body.classList.remove('overflow-hidden');
+    ? document.body.classList.add("overflow-hidden")
+    : document.body.classList.remove("overflow-hidden");
   return (
-    <div className='flex items-center gap-2 mt-2 md:mt-0'>
-      <div className="flex h-9 items-center w-full rounded-md border border-[#DDD] px-2">
-        <i className="fa-solid fa-search mr-2 text-gray-500"></i>
-        <input
-          type="text"
-          className="w-full text-sm text-gray-700 outline-none focus:border-none"
-          placeholder="Tìm kiếm..."
-          onChange={(e) => {
-            dispatch(changeSearchBar(e.target.value));
-          }}
-        />
-      </div>
+    <div className="container mx-auto flex items-center justify-end gap-2">
+      {/*TODO: horizontal scroll bar */}
 
+      {/* filter button */}
       <div
         className="flex max-w-[90px] cursor-pointer items-center justify-between rounded-md border border-[#DDDDDD] px-4 py-[7px] transition-all hover:border-black hover:bg-gray-100"
         onClick={() => setIsOpen(!isOpen)}
@@ -138,7 +127,7 @@ const FilterComponent = () => {
         <p className="text-sm font-medium">Lọc</p>
       </div>
       <div
-        className={`${isOpen ? 'fixed' : 'hidden'} left-0 top-0 z-50 h-full w-full bg-black/30 p-10 transition-all duration-300 ease-in-out`}
+        className={`${isOpen ? "fixed" : "hidden"} left-0 top-0 z-50 h-full w-full bg-black/30 p-10 transition-all duration-300 ease-in-out`}
       >
         <div className="flex h-full w-full items-center justify-center">
           <div className="w-full overflow-hidden rounded-md bg-white shadow-lg md:w-[568px]">
@@ -184,6 +173,19 @@ const FilterComponent = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* TODO: Search bar */}
+      <div className="flex min-h-10 items-center rounded-md border border-solid border-[#DDD] p-2">
+        <i className="fa-solid fa-search mr-2 text-gray-500"></i>
+        <input
+          type="text"
+          className="w-full text-sm text-gray-700 outline-none focus:border-none"
+          placeholder="Tìm kiếm..."
+          onChange={(e) => {
+            dispatch(changeSearchBar(e.target.value));
+          }}
+        />
       </div>
     </div>
   );

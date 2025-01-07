@@ -1,46 +1,44 @@
-import React from 'react';
-
 const FooterComponent = () => {
   return (
-    <footer className="bg-[#f7f7f7] mt-10">
+    <footer className="bg-[#f7f7f7]">
       <div className="container mx-auto px-2 py-6 md:px-4 md:py-10 lg:px-0 lg:py-12">
         {/* Top Section */}
         <div className="grid grid-cols-12 gap-6">
           {[
             {
-              title: 'Giới thiệu',
+              title: "Giới thiệu",
               links: [
-                'Phương thức hoạt động',
-                'Trang tin tức',
-                'Nhà đầu tư',
-                'Airbnb Plus',
+                "Phương thức hoạt động",
+                "Trang tin tức",
+                "Nhà đầu tư",
+                "Airbnb Plus",
               ],
             },
             {
-              title: 'Cộng đồng',
+              title: "Cộng đồng",
               links: [
-                'Sự đa dạng cảm giác thân thuộc',
-                'Đối tác liên kết Airbnb',
-                'Lượt giới thiệu của khách',
-                'Airbnb.org',
+                "Sự đa dạng cảm giác thân thuộc",
+                "Đối tác liên kết Airbnb",
+                "Lượt giới thiệu của khách",
+                "Airbnb.org",
               ],
             },
             {
-              title: 'Đón tiếp khách',
+              title: "Đón tiếp khách",
               links: [
-                'Cho thuê nhà',
-                'Tổ chức trải nghiệm',
-                'Trung tâm tài nguyên',
-                'Trung tâm cộng đồng',
+                "Cho thuê nhà",
+                "Tổ chức trải nghiệm",
+                "Trung tâm tài nguyên",
+                "Trung tâm cộng đồng",
               ],
             },
             {
-              title: 'Hỗ trợ',
+              title: "Hỗ trợ",
               links: [
-                'Trung tâm hỗ trợ',
-                'Các tùy chọn hủy',
-                'Hỗ trợ khu dân cư',
-                'Tin cậy an toàn',
+                "Trung tâm hỗ trợ",
+                "Các tùy chọn hủy",
+                "Hỗ trợ khu dân cư",
+                "Tin cậy an toàn",
               ],
             },
           ].map((section, index) => (
