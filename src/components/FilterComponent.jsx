@@ -111,16 +111,10 @@ const FilterComponent = () => {
     ]);
     setGiaPhong({ tu: undefined, den: undefined });
   };
-  isOpen
-    ? document.body.classList.add("overflow-hidden")
-    : document.body.classList.remove("overflow-hidden");
   return (
-    <div className="container mx-auto flex items-center justify-end gap-2">
-      {/*TODO: horizontal scroll bar */}
-
-      {/* filter button */}
+    <div className="flex items-center gap-4">
       <div
-        className="flex max-w-[90px] cursor-pointer items-center justify-between rounded-md border border-[#DDDDDD] px-4 py-[7px] transition-all hover:border-black hover:bg-gray-100"
+        className="flex max-w-[90px] h-[40px] cursor-pointer items-center justify-between rounded-md border border-[#DDDDDD] px-4 py-[7px] transition-all hover:border-black hover:bg-gray-100"
         onClick={() => setIsOpen(!isOpen)}
       >
         <img src="/icon/svgFilter.svg" alt="" />

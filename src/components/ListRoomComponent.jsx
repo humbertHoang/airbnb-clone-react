@@ -2,15 +2,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { filteredPhongSelector } from "../redux/selectors";
 import CardComponent from "./CardComponent";
+import FilterComponent from "./FilterComponent";
 
 const INITIAL_DISPLAY_COUNT = 8;
 const LOAD_MORE_COUNT = 8;
 
 const RoomListHeader = () => (
-  <div className="mb-4 flex flex-col justify-between md:flex-row md:items-center">
+  <div className="mb-4 flex flex-col gap-2 justify-between md:flex-row md:items-center" >
     <h2 className="text-start font-bold ~text-xl/2xl">
       Danh Sách Phòng Cho Thuê
     </h2>
+    <FilterComponent />
   </div>
 );
 

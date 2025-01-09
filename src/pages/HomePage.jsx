@@ -27,7 +27,6 @@ const HomePage = () => {
         <div className="mb-8 md:mb-12">
           <BannerComponent />
           <ListViTriGanDayComponent />
-          <FilterComponent />
           <ListRoomComponent />
         </div>
       ) : (

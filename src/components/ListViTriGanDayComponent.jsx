@@ -22,7 +22,10 @@ const ListViTriGanDayComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container mx-auto px-2 py-3 md:px-4 lg:px-0 lg:py-8">
+    <div
+      className="container mx-auto px-2 py-3 md:px-4 lg:px-0 lg:py-8"
+      id="listRoom"
+    >
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-start font-bold ~text-xl/2xl">
           Khám phá những điểm đến
