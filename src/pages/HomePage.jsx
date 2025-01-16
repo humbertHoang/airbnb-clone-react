@@ -4,7 +4,6 @@ import MapDisplay from "@/components/map/MapDisplay";
 import { FloatButton } from "antd";
 import { useEffect, useState } from "react";
 import BannerComponent from "../components/BannerComponent";
-import FilterComponent from "../components/FilterComponent";
 
 const HomePage = () => {
   const [open, setOpen] = useState(false);
@@ -14,7 +13,7 @@ const HomePage = () => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const viewportHeight = window.innerHeight;
-      setShowFloatButton(scrollPosition < viewportHeight * 2.5);
+      setShowFloatButton(scrollPosition < viewportHeight * 3.0);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -47,7 +46,7 @@ const HomePage = () => {
           shape="square"
           description={open ? "Danh sách" : "Bản đồ"}
           onClick={() => setOpen(!open)}
-          className="end-1/2 w-28 translate-x-1/2 transition-all hover:scale-110 [&_.ant-float-btn-body]:!bg-black/85 [&_.ant-float-btn-content]:!flex-row-reverse [&_.ant-float-btn-content]:!gap-2 [&_.ant-float-btn-description]:!text-sm [&_.ant-float-btn-description]:!text-white [&_svg]:!text-white"
+          className="end-1/2 w-28 translate-x-1/2 bg-black transition-all hover:scale-110 [&_.ant-float-btn-body]:!bg-black/85 [&_.ant-float-btn-content]:!flex-row-reverse [&_.ant-float-btn-content]:!gap-2 [&_.ant-float-btn-description]:!text-sm [&_.ant-float-btn-description]:!text-white [&_svg]:!text-white"
         />
       )}
     </>

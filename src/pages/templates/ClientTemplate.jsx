@@ -1,5 +1,5 @@
 import FooterComponent from "@/components/FooterComponent";
-import NavBarComponent from "@/components/NavBarComponent";
+import HeaderComponent from "@/components/HeaderComponent";
 import {
   isErrorPhongSelector,
   isErrorViTriSelector,
@@ -69,7 +69,7 @@ const ClientTemplate = () => {
 
   return (
     <>
-      <NavBarComponent />
+      <HeaderComponent />
       <Outlet />
       <FooterComponent />
     </>

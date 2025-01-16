@@ -2,7 +2,7 @@
 
 A modern, responsive Airbnb clone project built with React, Redux Toolkit, and Tailwind CSS.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend Framework:** React 18
 - **State Management:** Redux Toolkit
@@ -19,7 +19,7 @@ A modern, responsive Airbnb clone project built with React, Redux Toolkit, and T
   - React Toastify for notifications
   - Day.js for date handling
 
-## 📦 Installation
+## Installation
 
 1. Clone the repository:
 
@@ -47,7 +47,7 @@ npm run dev
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint for code quality
 
-## 🌟 Project Structure
+## Project Structure
 
 ```
 src/
@@ -59,6 +59,6 @@ src/
 └── main.jsx      # Application entry point
 ```
 
-## 📝 License
+## License
 
 This project is [MIT](LICENSE) licensed.

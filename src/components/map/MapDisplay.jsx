@@ -25,7 +25,7 @@ const MapDisplay = () => {
   if (typeof window === "undefined") return null;
 
   return (
-    <div className="fixed end-0 z-10 h-[calc(100vh-56px)] w-full">
+    <div className="fixed end-0 z-50 h-[calc(100vh-80px)] w-full">
       <MapContainer
         center={DEFAULT_CENTER}
         zoom={DEFAULT_ZOOM}

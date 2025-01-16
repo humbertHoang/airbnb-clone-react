@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { filteredPhongSelector } from "../redux/selectors";
 import CardComponent from "./CardComponent";
@@ -7,16 +8,18 @@ import FilterComponent from "./FilterComponent";
 const INITIAL_DISPLAY_COUNT = 8;
 const LOAD_MORE_COUNT = 8;
 
-const RoomListHeader = () => (
-  <div className="mb-4 flex flex-col gap-2 justify-between md:flex-row md:items-center" >
+const RoomListHeader = memo(() => (
+  <div className="mb-4 flex flex-col justify-between md:flex-row md:items-center">
     <h2 className="text-start font-bold ~text-xl/2xl">
-      Danh Sách Phòng Cho Thuê
+      Danh Sách Phòng Cho Thuê{" "}
     </h2>
     <FilterComponent />
   </div>
-);
+));
 
-const EmptyRoomState = () => (
+RoomListHeader.displayName = "RoomListHeader";
+
+const EmptyRoomState = memo(() => (
   <div className="flex h-96 items-center justify-center rounded-lg bg-gray-100 text-center shadow-md">
     <div>
       <h2 className="mb-4 text-3xl font-semibold text-gray-700">
@@ -27,9 +30,11 @@ const EmptyRoomState = () => (
       </p>
     </div>
   </div>
-);
+));
 
-const RoomGrid = ({ rooms }) => (
+EmptyRoomState.displayName = "EmptyRoomState";
+
+const RoomGrid = memo(({ rooms }) => (
   <div className="grid grid-cols-12 gap-x-4 gap-y-8 md:gap-y-10 xl:gap-x-6">
     {rooms.map((phong) => (
       <div
@@ -40,9 +45,11 @@ const RoomGrid = ({ rooms }) => (
       </div>
     ))}
   </div>
-);
+));
 
-const LoadingIndicator = ({ isLoading }) => (
+RoomGrid.displayName = "RoomGrid";
+
+const LoadingIndicator = memo(({ isLoading }) => (
   <div className="mt-8 flex justify-center">
     {isLoading ? (
       <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black"></div>
@@ -50,32 +57,24 @@ const LoadingIndicator = ({ isLoading }) => (
       <div className="h-10"></div>
     )}
   </div>
-);
+));
 
-const InfiniteScrollTrigger = ({ onIntersect }) => {
-  const triggerRef = useRef(null);
+LoadingIndicator.displayName = "LoadingIndicator";
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const first = entries[0];
-        if (first.isIntersecting) {
-          onIntersect();
-        }
-      },
-      { threshold: 0.1 },
-    );
+const InfiniteScrollTrigger = memo(({ onIntersect }) => {
+  const { ref } = useInView({
+    threshold: 0.1,
+    onChange: (inView) => {
+      if (inView) {
+        onIntersect();
+      }
+    },
+  });
 
-    const currentTrigger = triggerRef.current;
-    if (currentTrigger) {
-      observer.observe(currentTrigger);
-    }
+  return <div ref={ref} className="h-10" />;
+});
 
-    return () => observer.disconnect();
-  }, [onIntersect]);
-
-  return <div ref={triggerRef} />;
-};
+InfiniteScrollTrigger.displayName = "InfiniteScrollTrigger";
 
 const ListRoomComponent = () => {
   const allRooms = useSelector(filteredPhongSelector);
