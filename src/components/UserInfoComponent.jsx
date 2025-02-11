@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import UpdateUserComponent from "./UpdateUserComponent";
 import ListPhongDaDatComponent from "./ListPhongDaDatComponent";
+import UpdateUserComponent from "./UpdateUserComponent";
 
 const UserInfoComponent = ({ userInfo }) => {
   

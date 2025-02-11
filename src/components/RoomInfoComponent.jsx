@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { use, useEffect, useState } from 'react';
-import CommentList from './CommentList';
-import { useSelector } from 'react-redux';
-import { userSelector } from '../redux/selectors';
-import PostCommentBox from './PostCommentBox';
-import CardBookingComponent from './CardBookingComponent';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { userSelector } from "../redux/selectors";
+import CardBookingComponent from "./CardBookingComponent";
+import CommentList from "./CommentList";
+import PostCommentBox from "./PostCommentBox";
 
 const RoomInfoComponent = ({ detailRoom }) => {
   const user = useSelector(userSelector);
@@ -18,12 +18,12 @@ const RoomInfoComponent = ({ detailRoom }) => {
             headers: {
               tokenCybersoft: import.meta.env.VITE_TOKEN_CYBERSOFT,
             },
-          }
+          },
         );
         setlistComment(response.data.content);
       }
     } catch (error) {
-      console.error('Error fetching comments:', error);
+      console.error("Error fetching comments:", error);
     }
   };
   useEffect(() => {
@@ -38,7 +38,7 @@ const RoomInfoComponent = ({ detailRoom }) => {
           alt={`${detailRoom?.tePhong} img`}
         />
       </div>
-      <div className="mt-3 flex flex-col md:mt-6 md:flex-row lg:mt-9 gap-4">
+      <div className="mt-3 flex flex-col gap-4 md:mt-6 md:flex-row lg:mt-9">
         <div className="w-full md:w-1/2">
           <h2 className="text-xl font-bold">{detailRoom?.tenPhong}</h2>
           <div className="flex flex-wrap items-center text-[#222]">
@@ -114,8 +114,8 @@ const RoomInfoComponent = ({ detailRoom }) => {
             fetchComments={fetchComments}
           />
         </div>
-        <div className="w-full md:w-1/2 flex justify-center">
-          <CardBookingComponent detailRoom = {detailRoom} userId={user?.id} />
+        <div className="flex w-full justify-center md:w-1/2">
+          <CardBookingComponent detailRoom={detailRoom} userId={user?.id} />
         </div>
       </div>
     </div>

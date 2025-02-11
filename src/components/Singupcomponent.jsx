@@ -1,62 +1,62 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const SignUpComponent = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  
-    const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
-    };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   // Cấu hình Formik
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      phone: '',
-      birthday: '',
-      gender: 'true',
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      birthday: "",
+      gender: "true",
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .required('Vui lòng nhập tên của bạn.')
-        .min(3, 'Tên phải có ít nhất 3 ký tự.')
+        .required("Vui lòng nhập tên của bạn.")
+        .min(3, "Tên phải có ít nhất 3 ký tự.")
         .matches(
           /[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u,
-          'Tên chỉ chứa chữ cái và khoảng trắng.'
+          "Tên chỉ chứa chữ cái và khoảng trắng.",
         ), // Kiểm tra tên có thể chứa chữ cái có dấu hoặc không dấu và khoảng trắng
 
       email: Yup.string()
-        .email('Địa chỉ email không hợp lệ.')
-        .required('Vui lòng nhập email của bạn.')
+        .email("Địa chỉ email không hợp lệ.")
+        .required("Vui lòng nhập email của bạn.")
         .matches(
           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          'Email không hợp lệ.'
+          "Email không hợp lệ.",
         ), // Kiểm tra định dạng email
       password: Yup.string()
-        .required('Vui lòng nhập mật khẩu của bạn.')
-        .min(6, 'Mật khẩu phải có ít nhất 6 ký tự.')
+        .required("Vui lòng nhập mật khẩu của bạn.")
+        .min(6, "Mật khẩu phải có ít nhất 6 ký tự.")
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-          'Mật khẩu phải bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt.'
+          "Mật khẩu phải bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt.",
         ), // Kiểm tra mật khẩu có ít nhất một chữ cái và một số
       phone: Yup.string()
-        .required('Vui lòng nhập số điện thoại của bạn.')
-        .matches(/^[0-9]{10}$/, 'Số điện thoại phải có 10 chữ số.'), // Kiểm tra số điện thoại 10 chữ số
+        .required("Vui lòng nhập số điện thoại của bạn.")
+        .matches(/^[0-9]{10}$/, "Số điện thoại phải có 10 chữ số."), // Kiểm tra số điện thoại 10 chữ số
       birthday: Yup.date()
-        .required('Vui lòng nhập ngày sinh của bạn.')
-        .max(new Date(), 'ngày sinh không hợp lệ '),
-      gender: Yup.string().required('Vui lòng chọn giới tính.'),
+        .required("Vui lòng nhập ngày sinh của bạn.")
+        .max(new Date(), "ngày sinh không hợp lệ "),
+      gender: Yup.string().required("Vui lòng chọn giới tính."),
     }),
     onSubmit: async (values) => {
       try {
         await axios({
-          method: 'POST',
+          method: "POST",
           url: `${import.meta.env.VITE_API_URL}/api/auth/signup`,
           headers: {
             tokenCybersoft: import.meta.env.VITE_TOKEN_CYBERSOFT,
@@ -70,8 +70,8 @@ const SignUpComponent = () => {
             gender: values.gender,
           },
         });
-        toast.success('Tạo tài khoản thành công');
-        navigate('/login');
+        toast.success("Tạo tài khoản thành công");
+        navigate("/login");
       } catch (error) {
         toast.error(error.response.data.content);
       }
@@ -149,7 +149,7 @@ const SignUpComponent = () => {
             </label>
             <div className="relative flex items-center rounded-md border border-gray-300">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Nhập mật khẩu của bạn"
                 className="w-full rounded-md px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-blue-500"
@@ -162,7 +162,7 @@ const SignUpComponent = () => {
                 onClick={togglePasswordVisibility}
               >
                 <i
-                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                  className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
                 ></i>
               </span>
             </div>
@@ -231,7 +231,7 @@ const SignUpComponent = () => {
                   type="radio"
                   name="gender"
                   value="true"
-                  checked={formik.values.gender === 'true'}
+                  checked={formik.values.gender === "true"}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className="mr-2"
@@ -243,7 +243,7 @@ const SignUpComponent = () => {
                   type="radio"
                   name="gender"
                   value="false"
-                  checked={formik.values.gender === 'false'}
+                  checked={formik.values.gender === "false"}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className="mr-2"
@@ -266,7 +266,7 @@ const SignUpComponent = () => {
         </form>
         {/* Login Link */}
         <p className="mt-6 text-center text-gray-500">
-          Đã có tài khoản?{' '}
+          Đã có tài khoản?{" "}
           <NavLink to="/login" className="text-blue-500 hover:underline">
             Đăng nhập ngay
           </NavLink>

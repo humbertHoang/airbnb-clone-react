@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const PriceRangeComponent = ({ giaPhong, setGiaPhong }) => {
   const handleChangeTu = (event) => {
@@ -17,15 +17,15 @@ const PriceRangeComponent = ({ giaPhong, setGiaPhong }) => {
 
   return (
     <div className="pb-6">
-      <h3 className="font-semibold pb-4">Khoảng giá</h3>
+      <h3 className="pb-4 font-semibold">Khoảng giá</h3>
       <div className="flex items-center gap-4">
         {/* Input giá từ */}
         <input
           type="text"
-          value={(giaPhong.tu) || ""}
+          value={giaPhong.tu || ""}
           placeholder="₫ TỪ"
           onChange={handleChangeTu}
-          className="w-full h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+          className="h-10 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-gray-400 focus:outline-none"
         />
         <div className="text-xl font-semibold text-gray-500">-</div>
         {/* Input giá đến */}
@@ -34,7 +34,7 @@ const PriceRangeComponent = ({ giaPhong, setGiaPhong }) => {
           value={giaPhong.den || ""} // Hiển thị giá trị "đến"
           placeholder="₫ ĐẾN"
           onChange={handleChangeDen}
-          className="w-full h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-gray-400"
+          className="h-10 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-gray-400 focus:outline-none"
         />
       </div>
     </div>

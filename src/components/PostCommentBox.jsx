@@ -1,26 +1,26 @@
-import { Rate } from 'antd';
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { tokenSelector } from '../redux/selectors';
-import { toast } from 'react-toastify';
+import { Rate } from "antd";
+import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { tokenSelector } from "../redux/selectors";
 
-const PostCommentBox = ({ userId, avatar, roomId,fetchComments }) => {
+const PostCommentBox = ({ userId, avatar, roomId, fetchComments }) => {
   const token = useSelector(tokenSelector);
   const [rating, setRating] = useState(4);
-  const [noidung, setNoidung] = useState('');
+  const [noidung, setNoidung] = useState("");
   const handleComment = async () => {
     if (!userId) {
-      alert('Vui lòng đăng nhập');
+      alert("Vui lòng đăng nhập");
     } else {
       try {
         const response = await axios({
-          method: 'POST',
+          method: "POST",
           url: `${import.meta.env.VITE_API_URL}/api/binh-luan`,
           headers: {
             tokenCybersoft: import.meta.env.VITE_TOKEN_CYBERSOFT,
             token: token,
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           data: {
             maPhong: roomId,
@@ -30,12 +30,12 @@ const PostCommentBox = ({ userId, avatar, roomId,fetchComments }) => {
             saoBinhLuan: rating,
           },
         });
-        setNoidung('');
+        setNoidung("");
         setRating(4);
-        fetchComments()
-        toast.success(response.data.message)
+        fetchComments();
+        toast.success(response.data.message);
       } catch (error) {
-        console.log('🚀 ~ handleComment ~ error:', error);
+        console.log("🚀 ~ handleComment ~ error:", error);
       }
     }
   };
@@ -45,7 +45,7 @@ const PostCommentBox = ({ userId, avatar, roomId,fetchComments }) => {
         <img
           src={
             avatar ||
-            'https://www.nuockhoangtinhkhiet24h.com/upload/img/inuser/Avatar-Facebook-tr%E1%BA%AFng.jpg'
+            "https://www.nuockhoangtinhkhiet24h.com/upload/img/inuser/Avatar-Facebook-tr%E1%BA%AFng.jpg"
           }
           alt="User Avatar"
           className="h-12 w-12 rounded-full object-cover"

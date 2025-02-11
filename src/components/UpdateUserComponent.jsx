@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { Button, Modal } from "antd";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import * as Yup from "yup";
 import { changeUser } from "../redux/slice/userSlice";
 const UpdateUserComponent = ({ userInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       name: userInfo?.name,
@@ -51,11 +51,10 @@ const UpdateUserComponent = ({ userInfo }) => {
             ...values,
           },
         });
-        dispatch(changeUser(response.data.content))
+        dispatch(changeUser(response.data.content));
         localStorage.setItem("user", JSON.stringify(response.data.content));
       } catch (error) {
-        console.log("🚀 ~ onSubmit: ~ error:", error)
-        
+        console.log("🚀 ~ onSubmit: ~ error:", error);
       }
     },
   });

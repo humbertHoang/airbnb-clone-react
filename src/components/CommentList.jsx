@@ -1,17 +1,14 @@
 import { Rate } from "antd";
-import React from "react";
 
 const CommentList = ({ comments = [] }) => {
   return (
     <div className="w-full">
-      <div
-        className="flex max-h-96 flex-col gap-4 overflow-y-auto overflow-x-hidden border border-gray-300 bg-gray-50 p-4"
-      >
+      <div className="flex max-h-96 flex-col gap-4 overflow-y-auto overflow-x-hidden border border-gray-300 bg-gray-50 p-4">
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div
               key={comment.id}
-              className="flex items-start space-x-4 border border-gray-300 bg-white p-4 transition-shadow rounded-md"
+              className="flex items-start space-x-4 rounded-md border border-gray-300 bg-white p-4 transition-shadow"
             >
               <img
                 src={
@@ -23,7 +20,7 @@ const CommentList = ({ comments = [] }) => {
               />
               <div className="flex flex-col overflow-hidden">
                 <div className="flex items-center gap-4">
-                  <h3 className="text-lg font-semibold text-gray-900 truncate">
+                  <h3 className="truncate text-lg font-semibold text-gray-900">
                     {comment.tenNguoiBinhLuan || "Anonymous"}
                   </h3>
                   <Rate disabled defaultValue={comment.saoBinhLuan} />

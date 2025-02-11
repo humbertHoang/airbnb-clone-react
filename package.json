@@ -1,7 +1,7 @@
 {
   "name": "airbnb-clone-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,47 +10,47 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.2",
-    "@antdp/page-loading": "^2.1.1",
-    "@reduxjs/toolkit": "^2.5.0",
-    "antd": "^5.22.7",
+    "@ant-design/icons": "^5.6.1",
+    "@antdp/page-loading": "^2.1.2",
+    "@reduxjs/toolkit": "^2.5.1",
+    "antd": "^5.24.0",
     "axios": "^1.7.9",
     "formik": "^2.4.6",
     "leaflet": "^1.9.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
-    "react-intersection-observer": "^9.14.1",
-    "react-leaflet": "4.2.1",
+    "react-intersection-observer": "^9.15.1",
+    "react-leaflet": "5.0.0",
     "react-redux": "^9.2.0",
-    "react-router": "^7.1.1",
-    "react-toastify": "^11.0.2",
+    "react-router": "^7.1.5",
+    "react-toastify": "^11.0.3",
     "reselect": "^5.1.1",
     "unorm": "^1.6.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react-swc": "^3.7.2",
+    "@eslint/js": "^9.20.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.8.0",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.3",
+    "eslint": "^9.20.0",
+    "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
+    "eslint-plugin-react-refresh": "^0.4.19",
     "fluid-tailwind": "^1.0.4",
     "globals": "^15.14.0",
-    "postcss": "^8.4.49",
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.9",
+    "postcss": "^8.5.2",
+    "prettier": "^3.5.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.0.7"
+    "vite": "^6.1.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.29.2"
+    "@rollup/rollup-linux-x64-gnu": "4.34.6"
   },
   "prettier": {
     "plugins": [

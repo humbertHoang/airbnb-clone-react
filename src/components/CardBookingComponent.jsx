@@ -1,11 +1,10 @@
-import React from "react";
 import { DatePicker, Select, Space } from "antd";
+import axios from "axios";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
-import axios from "axios";
+import * as Yup from "yup";
 
 dayjs.extend(customParseFormat);
 
@@ -92,7 +91,7 @@ const CardBookingComponent = ({ detailRoom, userId }) => {
   const totalPrice = totalDays * roomPricePerNight;
 
   return (
-    <div className="flex h-96 w-full lg:w-1/2 flex-col gap-4 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
+    <div className="flex h-96 w-full flex-col gap-4 rounded-lg border border-gray-300 bg-white p-4 shadow-lg lg:w-1/2">
       <h2 className="text-xl font-bold">
         {roomPricePerNight.toLocaleString("it-IT", {
           style: "currency",
