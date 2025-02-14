@@ -2,15 +2,19 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useLocation } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { changeUser } from "../redux/slice/userSlice";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -42,15 +46,22 @@ const LoginComponent = () => {
             password: values.password,
           },
         });
-        dispatch(changeUser(response.data.content.user));
-        localStorage.setItem("token", response.data.content.token);
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response.data.content.user),
-        );
 
-        toast.success("Đăng nhập thành công");
-        navigate("/");
+        const userData = response.data.content.user;
+        dispatch(changeUser(userData));
+        localStorage.setItem("token", response.data.content.token);
+
+        login(userData);
+
+        toast.success("Đăng nhập thành công!");
+
+        // Chuyển về trang admin hoặc trang cũ theo vị trí
+        const from = location.state?.from?.pathname || "/";
+        if (userData.role === "ADMIN") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate(from);
+        }
       } catch (error) {
         toast.error(error.response.data.content);
       }

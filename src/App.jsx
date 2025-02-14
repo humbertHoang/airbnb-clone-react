@@ -24,46 +24,57 @@ import ClientTemplate from "./pages/templates/ClientTemplate";
 import UserProfilePage from "./pages/UserProfilePage";
 import ViTriPage from "./pages/ViTriPage";
 import { theme } from "./theme/antd.config";
+import AuthProvider from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <ConfigProvider theme={theme}>
       <AntApp>
-        <BrowserRouter>
-          <Routes>
-            {/* Client Routes */}
-            <Route path="/" element={<ClientTemplate />}>
-              <Route path="" element={<HomePage />} />
-              <Route path="room/:roomId" element={<DetailRoomPage />} />
-              <Route path="login" element={<LoginComponent />} />
-              <Route path="register" element={<SignUpComponent />} />
-              <Route path="profile" element={<UserProfilePage />} />
-              <Route path="vi-tri/:viTriId" element={<ViTriPage />} />
-            </Route>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Client Routes */}
+              <Route path="/" element={<ClientTemplate />}>
+                <Route path="" element={<HomePage />} />
+                <Route path="room/:roomId" element={<DetailRoomPage />} />
+                <Route path="login" element={<LoginComponent />} />
+                <Route path="register" element={<SignUpComponent />} />
+                <Route path="profile" element={<UserProfilePage />} />
+                <Route path="vi-tri/:viTriId" element={<ViTriPage />} />
+              </Route>
 
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminTemplate />}>
-              <Route index element={<DashboardPage />} />
-              <Route path="dashboard" element={<DashboardPage />} />
-              <Route path="users" element={<UsersPage />} />
-              <Route path="users/add" element={<UserCreatePage />} />
-              <Route path="users/edit/:id" element={<UserEditPage />} />
-              <Route path="locations" element={<LocationsPage />} />
-              <Route path="locations/add" element={<LocationCreatePage />} />
-              <Route path="locations/edit/:id" element={<LocationEditPage />} />
-              <Route path="rooms" element={<RoomsPage />} />
-              <Route path="rooms/add" element={<RoomCreatePage />} />
-              <Route path="rooms/edit/:id" element={<RoomEditPage />} />
-              <Route path="bookings" element={<BookingsPage />} />
-              <Route path="bookings/add" element={<BookingCreatePage />} />
-              <Route path="bookings/edit/:id" element={<BookingEditPage />} />
-            </Route>
+              {/* Admin Routes */}
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminTemplate />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<DashboardPage />} />
+                <Route path="dashboard" element={<DashboardPage />} />
+                <Route path="users" element={<UsersPage />} />
+                <Route path="users/add" element={<UserCreatePage />} />
+                <Route path="users/edit/:id" element={<UserEditPage />} />
+                <Route path="locations" element={<LocationsPage />} />
+                <Route path="locations/add" element={<LocationCreatePage />} />
+                <Route path="locations/edit/:id" element={<LocationEditPage />} />
+                <Route path="rooms" element={<RoomsPage />} />
+                <Route path="rooms/add" element={<RoomCreatePage />} />
+                <Route path="rooms/edit/:id" element={<RoomEditPage />} />
+                <Route path="bookings" element={<BookingsPage />} />
+                <Route path="bookings/add" element={<BookingCreatePage />} />
+                <Route path="bookings/edit/:id" element={<BookingEditPage />} />
+              </Route>
 
-            {/* 404 Route */}
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-          <ToastContainer autoClose={1000} />
-        </BrowserRouter>
+              {/* 404 Route */}
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+            <ToastContainer autoClose={1000} />
+          </BrowserRouter>
+        </AuthProvider>
       </AntApp>
     </ConfigProvider>
   );
